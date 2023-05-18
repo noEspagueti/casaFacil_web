@@ -1,0 +1,63 @@
+
+<th:block th:fragment="navbar">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg"
+         style="height: 8em; background: #ECF0F1;">
+        <div class="container w-50 p-3 rounded-2" style="background: #ECF0F1;">
+            <a class="navbar-brand d-flex align-content-center"> <img
+                    class="img-fluid" width="120" src="/public/logoweb-01.png"
+                    alt="CasaFacil beibe">
+            </a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown"><a
+                            class="nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Dropdown </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else
+                                    here</a></li>
+                        </ul></li>
+                    <li class="nav-item dropdown"><a
+                            class="nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else
+                                    here</a></li>
+                        </ul></li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse p-0 formLogin"
+                 id="navbarSupportedContent" style="width: 0;">
+                <div class="d-flex gap-5 align-items-center collapse navbar-collapse justify-content-end hamburguer"
+                     aria-label="Button group">
+                    <button class="callToActionPublicar fw-bold">Publicar</button>
+                    <p th:if="${credencial != null}" th:text="${credencial.correo}" class="m-0">..</p>
+                    <a
+                        th:if="${titulo != 'Registrar usuario' && titulo != 'Iniciar sesión' && credencial==null}"
+                        href="customer/account/login" type="button"
+                        class="btn iniciarSesion" id="btnInput">Iniciar sesión</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</th:block>
+

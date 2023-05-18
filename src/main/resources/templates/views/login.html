@@ -1,0 +1,45 @@
+
+<head th:replace="head :: head"></head>
+
+<!-- NAVBAR -->
+<div th:include="navbar :: navbar"></div>
+
+<style>
+    form .invalid-feedback{
+        display: block;
+    }
+</style>
+
+<!-- CONTAINER LOGIN -->
+<div class="container_login">
+    <div class="login">
+        <div class="title_login">
+            <h1>Incia sesión en tu casaFacil account</h1>
+        </div>
+        <form action="" th:object="${credenciales}" method="post" id="form_login" enctype="multipart/form-data">
+            <div class="row-input">
+                <label>Ingrese correo</label> 
+                <input type="email" placeholder="example@mail.com" th:field="*{correo}" name="correo"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">
+
+                </div>
+            </div>
+            <div class="row-input">
+                <label>Ingrese Contraseña</label> 
+                <input type="Password"  name="clave" th:field="*{clave}" placeholder="Ingrese clave" />
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}">
+
+                </div>
+            </div>
+            <div class="row-button">
+                <input type="submit" value="Iniciar sesión" />
+            </div>
+        </form>
+        <div style="width: 50%; padding: 0 10px;">
+            <a href="/customer/account/registrar">Crear cuenta</a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div th:include="footer :: footer"></div>

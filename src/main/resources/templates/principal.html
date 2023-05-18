@@ -1,0 +1,29 @@
+
+
+<th:block th:fragment="principal">
+
+	<div class="container" style="width: 100;">
+		<div class="principalContainer">
+			<div class="">
+				<h1 class="principalTittle">Tu lugar de ensueño</h1>
+				<div class="containerNav">
+					<button class="buttonNav">Alquilar</button>
+					<button class="buttonNav">Comprar</button>
+					<button class="buttonNav">Proyectos</button>
+				</div>
+				<div class="inputContainer">
+					<form class="formNav" method="post" action="#">
+						<select name="comboBoxNav" class="comboBoxNav" id="comboBoxNav">
+							<option selected>Departamento</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select> <input type="text" name="inputNav"
+							placeholder="Ingresa ubicaciones (eje: Lima)"> <input
+							type="submit" value="Buscar" class="buttonSubmit">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>

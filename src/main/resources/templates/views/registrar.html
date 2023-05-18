@@ -1,0 +1,29 @@
+
+<head th:replace="head :: head"></head>
+
+<!-- NAVBAR -->
+<div th:include="navbar :: navbar"></div>
+
+<!-- CONTAINER LOGIN -->
+<div class="container_login">
+	<div class="login">
+		<div class="title_login">
+			<h1>Registrate</h1>
+		</div>
+		<form th:action="@{/}" method="post" id="form_login">
+			<div class="row-input">
+				<label>Ingrese correo</label> <input type="email"
+					placeholder="example@mail.com" />
+			</div>
+			<div class="row-input">
+				<label>Ingrese Contraseña</label> <input type="email" />
+			</div>
+			<div class="row-button">
+				<input type="submit" value="Iniciar sesión">
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- FOOTER -->
+<div th:include="footer :: footer"></div>
