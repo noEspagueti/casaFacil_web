@@ -18,3 +18,15 @@ fetch("https://api.pexels.com/v1/search?query=living%20room&width=1000", option)
             imgURL.style.backgroundImage = `url(${photos[1].src["original"]})`;
         })
 
+
+
+
+let profile = document.querySelector(".profile");
+if (profile) {
+    profile.addEventListener("click", (e) => {
+        if (e.target.classList[0] !== "bi")
+            return;
+        let profileContain = profile.children[1];
+        profileContain.classList.toggle("active");
+    });
+}

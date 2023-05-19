@@ -5,7 +5,7 @@
     <nav class="navbar navbar-expand-lg"
          style="height: 8em; background: #ECF0F1;">
         <div class="container w-50 p-3 rounded-2" style="background: #ECF0F1;">
-            <a class="navbar-brand d-flex align-content-center"> <img
+            <a class="navbar-brand d-flex align-content-center" href="/home"> <img
                     class="img-fluid" width="120" src="/public/logoweb-01.png"
                     alt="CasaFacil beibe">
             </a>
@@ -20,7 +20,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown"><a
                             class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Dropdown </a>
+                            data-bs-toggle="dropdown" aria-expanded="false">Comprar</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -32,7 +32,7 @@
                         </ul></li>
                     <li class="nav-item dropdown"><a
                             class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+                            data-bs-toggle="dropdown" aria-expanded="false"> Alquilar </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -49,7 +49,32 @@
                 <div class="d-flex gap-5 align-items-center collapse navbar-collapse justify-content-end hamburguer"
                      aria-label="Button group">
                     <button class="callToActionPublicar fw-bold">Publicar</button>
-                    <p th:if="${credencial != null}" th:text="${credencial.correo}" class="m-0">..</p>
+                    <div  class="profile" th:if="${credencial != null}">
+                        <div class="icon-profile">
+                            <i class="bi bi-person-circle" style="font-size: 2.2em; color: #BFD7DA;"></i>
+                        </div>
+                        <div class="profile-contain">
+                            <div class="profile-user">
+                                <label class="fw-bold">Usuario</label>
+                                <p th:text="${credencial.correo}">usuario</p>
+                                <div class="line"></div>
+                            </div>
+                            <div class="profile-body">
+                                <div class="row-favoritos">
+                                    <a href="">Mis favoritos</a>                 
+                                </div>
+                                <div class="row-publicaciones">
+                                    <a href="">Mis publicaciones</a>                 
+                                </div>
+                                <div class="row-contactos">
+                                    <a href="">Mis contactos</a>                 
+                                </div>
+                                <div class="row-close-session">
+                                    <a href="/logout">Cerrar sesión</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a
                         th:if="${titulo != 'Registrar usuario' && titulo != 'Iniciar sesión' && credencial==null}"
                         href="customer/account/login" type="button"
