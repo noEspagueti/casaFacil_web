@@ -4,6 +4,7 @@
  */
 package com.casafacil.project.models;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 /**
@@ -12,6 +13,15 @@ import lombok.Data;
  */
 @Data
 public class Publicacion {
-    
-    
+
+    private Long idPublicacion;
+    @NotBlank
+    private String titulo;
+     @NotBlank
+    private String contenido;
+    private Double precio;
+    private String rutaImg;
+    private String tipoPublicacion;
+    private String tipoInmueble;
+    private Data fecha;
 }

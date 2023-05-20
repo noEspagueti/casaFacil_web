@@ -435,7 +435,7 @@ select[name="comboBoxNav"] {
     color: #272727;
     display: flex;
     align-content:start;
-    widows: 100%;
+    width: 100%;
 }
 .row-favoritos a:hover, .row-publicaciones a:hover, .row-contactos a:hover{
     background:#ECF0F1;
@@ -451,3 +451,16 @@ select[name="comboBoxNav"] {
     align-content:start;
 }
 
+/*REGISTRAR*/
+.container_registrar{
+    margin: 20px;
+    display:flex;
+    justify-content: center;
+}
+
+.registrar{
+    width: 50em;
+    padding: 20px;
+    background: #fff;
+    border-radius: 20px;
+}

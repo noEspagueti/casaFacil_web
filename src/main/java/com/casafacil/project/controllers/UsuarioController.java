@@ -6,8 +6,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casafacil.project.models.Credenciales;
+import com.casafacil.project.models.Usuario;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -43,7 +49,7 @@ public class UsuarioController {
         if (c.getCorreo() == null || c.getClave() == null || bindingResult.hasErrors()) {
             return new ModelAndView("./views/login")
                     .addObject("titulo", "Iniciar sesión")
-                    .addObject("credenciales", new Credenciales());
+                    .addObject("credenciales", c);
         } else {
             String url = "http://localhost:8050/api/credenciales/" + c.getCorreo().trim();
             try {
@@ -63,12 +69,36 @@ public class UsuarioController {
             }
         }
     }
-    
+
     //REGISTRAR
     @GetMapping("/customer/account/registrar")
     public ModelAndView mostrarRegistroUsuario() {
         return new ModelAndView("views/registrar")
-                .addObject("titulo", "Registrar usuario");
+                .addObject("titulo", "Registrar usuario")
+                .addObject("usuario", new Usuario());
+    }
+
+    @PostMapping("/customer/account/registrar")
+    public ModelAndView registrarUsuario(@Validated Usuario u, BindingResult bindingResult) {
+        if (bindingResult.hasErrors() || u.getApellido().isEmpty()
+                || u.getCredenciales() == null || u.getNombre().isEmpty()
+                || u.getDireccion().isEmpty()|| u.getDistrito().isEmpty()
+                || u.getCelular().isEmpty()) {
+            return new ModelAndView("views/registrar")
+                    .addObject("titulo", "Registrar usuario")
+                    .addObject("usuario", u);
+        } else {
+            restTemplate = new RestTemplate();
+            String url = "http://localhost:8050/api/usuarios";
+            HttpHeaders header = new HttpHeaders();
+            header.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Usuario> entidadUsuario = new HttpEntity(u, header);
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entidadUsuario, String.class);
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return new ModelAndView("redirect:/home");
+            }
+        }
+        return null;
     }
 
     //LOGOUT
@@ -79,7 +109,6 @@ public class UsuarioController {
         return new ModelAndView("redirect:/")
                 .addObject("credencial", null);
     }
-    
+
     //PUBLICAR
-    
 }

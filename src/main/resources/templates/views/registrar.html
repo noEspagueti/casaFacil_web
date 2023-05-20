@@ -5,24 +5,72 @@
 <div th:include="navbar :: navbar"></div>
 
 <!-- CONTAINER LOGIN -->
-<div class="container_login">
-	<div class="login">
-		<div class="title_login">
-			<h1>Registrate</h1>
-		</div>
-		<form th:action="@{/}" method="post" id="form_login">
-			<div class="row-input">
-				<label>Ingrese correo</label> <input type="email"
-					placeholder="example@mail.com" />
-			</div>
-			<div class="row-input">
-				<label>Ingrese Contraseña</label> <input type="email" />
-			</div>
-			<div class="row-button">
-				<input type="submit" value="Iniciar sesión">
-			</div>
-		</form>
-	</div>
+<div class="container_registrar">
+    <div class="registrar">
+        <div class="title_login">
+            <h1>Resgistrate y encuentra tu lugar de ensueño</h1>
+        </div>
+        <form class="row g-3"  action="" th:object="${usuario}" method="post" enctype="multipart/form-data">
+            <div class="col-12">
+                <label>Nombre</label>
+                <input type="text" class="form-control" th:field="*{nombre}" name="nombre" placeholder="Ingrese nombre"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label>Apellido</label>
+                <input type="text" name="apellido" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">
+
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label  class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" th:field="*{direccion}" name="direccion" placeholder="Ingrese dirección"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">
+
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label  class="form-label">Distrito</label>
+                <input type="text" class="form-control" name="distrito" th:field="*{distrito}" placeholder="Ingrese distrito"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('distrito')}" th:errors="*{distrito}">
+
+                </div>
+            </div>
+            <div class="col-12">
+                <label>Celular</label>
+                <input type="text" name="celular" class="form-control" th:field="*{celular}" placeholder="Ingrese celular"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}">
+
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label  class="form-label">Correo:</label>
+                <input type="email" class="form-control" id="correo" th:field="*{credenciales.correo}" name="correo" placeholder="Ingrese correo" />
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('credenciales.correo')}" th:errors="*{credenciales.correo}">
+
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label  class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" name="clave" th:field="*{credenciales.clave}" placeholder="Ingrese clave">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('credenciales.clave')}" th:errors="*{credenciales.clave}">
+
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Registrar usuario</button>
+                <button type="Reset" class="btn btn-danger">Borrar todo</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!-- FOOTER -->
