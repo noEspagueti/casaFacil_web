@@ -48,16 +48,16 @@
                  id="navbarSupportedContent" style="width: 0;">
                 <div class="d-flex gap-5 align-items-center collapse navbar-collapse justify-content-end hamburguer"
                      aria-label="Button group">
-                    <button class="callToActionPublicar fw-bold">Publicar</button>
+                    <a class="callToActionPublicar fw-bold" href="/publicar/nuevo" style="text-decoration: none; color:#272727;" th:if="${credencial != null && titulo != 'Publicar Inmueble'}">Publicar</a>
                     <div  class="profile" th:if="${credencial != null}">
                         <div class="icon-profile">
                             <i class="bi bi-person-circle" style="font-size: 2.2em; color: #BFD7DA;"></i>
                         </div>
                         <div class="profile-contain">
                             <div class="profile-user">
-                                <label class="fw-bold">Usuario</label>
-                                <p th:text="${credencial.correo}">usuario</p>
-                                <div class="line"></div>
+                                <label class="fw-bold">Usuario</label>                               
+                                <p th:text="${credencial.correo}" class="m-0">usuario</p>
+                                <p th:text="${usuario.dniUsuario}" class="fw-light">dniUsuario</p>
                             </div>
                             <div class="profile-body">
                                 <div class="row-favoritos">

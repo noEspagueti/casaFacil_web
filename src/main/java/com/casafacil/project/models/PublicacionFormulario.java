@@ -4,11 +4,9 @@
  */
 package com.casafacil.project.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.Transient;
-import java.util.Date;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,19 +15,22 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Miguel
  */
 @Data
-@JsonSerialize
-public class Publicacion {
+public class PublicacionFormulario {
+    @NotEmpty
     private String titulo;
+    @NotEmpty
     private String contenido;
+    @NotNull
     private String precio;
+    @NotEmpty
     private String tipoPublicacion;
+    @NotEmpty
     private String tipoInmueble;
-    private String rutaImg;
+    @NotEmpty
     private String ciudad;
-    private Date fecha;
+    @NotEmpty
     private String distrito;
-    private Usuario usuario;
     @Transient
-    @JsonIgnore
     private MultipartFile imagenPublicacion;
+
 }

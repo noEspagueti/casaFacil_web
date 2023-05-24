@@ -7,29 +7,29 @@ import lombok.Data;
 
 @Data
 public class Usuario {
-
+    @NotNull
     @NotEmpty
-    @NotBlank
+    private String dniUsuario;
+    
+    @NotEmpty
     @NotNull
     private String nombre;
     @NotEmpty
-    @NotBlank
     @NotNull
     private String apellido;
     @NotEmpty
-    @NotBlank
     @NotNull
     private String direccion;
     @NotEmpty
-    @NotBlank
     @NotNull
     private String distrito;
     @NotEmpty
-    @NotBlank
     @NotNull
     private String celular;
- 
+
     @NotNull
     private Credenciales credenciales;
+    
+
 
 }

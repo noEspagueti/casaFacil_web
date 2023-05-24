@@ -4,6 +4,12 @@
 <!-- NAVBAR -->
 <div th:include="navbar :: navbar"></div>
 
+<style>
+    form .invalid-feedback{
+        display: block;
+    }
+</style>
+
 <!-- CONTAINER LOGIN -->
 <div class="container_registrar">
     <div class="registrar">
@@ -18,7 +24,13 @@
 
                 </div>
             </div>
+            <div class="col-12">
+                <label>Documento de identidad</label>
+                <input type="text" class="form-control" th:field="*{dniUsuario}" name="dniUsuario" placeholder="Ingrese dni Usuario"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('dniUsuario')}" th:errors="*{dniUsuario}">
 
+                </div>
+            </div>
             <div class="col-12">
                 <label>Apellido</label>
                 <input type="text" name="apellido" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido"/>
