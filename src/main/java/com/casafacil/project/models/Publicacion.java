@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Publicacion {
     private String titulo;
     private String contenido;
-    private String precio;
+    private Double precio;
     private String tipoPublicacion;
     private String tipoInmueble;
     private String rutaImg;
@@ -30,6 +30,5 @@ public class Publicacion {
     private String distrito;
     private Usuario usuario;
     @Transient
-    @JsonIgnore
     private MultipartFile imagenPublicacion;
 }

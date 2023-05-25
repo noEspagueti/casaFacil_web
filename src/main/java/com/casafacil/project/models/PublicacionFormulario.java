@@ -21,7 +21,7 @@ public class PublicacionFormulario {
     @NotEmpty
     private String contenido;
     @NotNull
-    private String precio;
+    private Double precio;
     @NotEmpty
     private String tipoPublicacion;
     @NotEmpty

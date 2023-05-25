@@ -9,8 +9,10 @@ import com.casafacil.project.models.Credenciales;
 import com.casafacil.project.models.Publicacion;
 import com.casafacil.project.models.PublicacionFormulario;
 import com.casafacil.project.models.Usuario;
+import com.casafacil.project.models.Almacen;
 import com.casafacil.project.services.AlmacenServiceImpl;
 import com.casafacil.project.services.PublicacionFormularioImpl;
+import com.casafacil.project.services.webServiceImpl;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping(value = {"/", "home"})
@@ -37,6 +40,9 @@ public class UsuarioController {
     private AlmacenServiceImpl almacenService;
     @Autowired
     private PublicacionFormularioImpl publicacionFormularioService;
+    @Autowired
+    private webServiceImpl servicioWeb;
+
     private RestTemplate restTemplate;
 
     @GetMapping(value = {"/", "/home"})
@@ -103,12 +109,7 @@ public class UsuarioController {
                     .addObject("titulo", "Registrar usuario")
                     .addObject("usuario", u);
         } else {
-            restTemplate = new RestTemplate();
-            String url = "http://localhost:8050/api/usuarios";
-            HttpHeaders header = new HttpHeaders();
-            header.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<Usuario> entidadUsuario = new HttpEntity(u, header);
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entidadUsuario, String.class);
+            ResponseEntity response = servicioWeb.consumirApi("http://localhost:8050/api/usuarios", u);
             if (response.getStatusCode() == HttpStatus.OK) {
                 return new ModelAndView("redirect:/home");
             }
@@ -161,15 +162,12 @@ public class UsuarioController {
             String nombreImagen = almacenService.almacenarArchivo(p.getImagenPublicacion());
             Publicacion publicacionEntity = publicacionFormularioService.getPublicacionEntity(p);
             publicacionEntity.setUsuario(user);
-            publicacionEntity.setRutaImg("esteEsElError");
-
-            String url = "http://localhost:8050/api/publicacion";
-            restTemplate = new RestTemplate();
-            HttpHeaders header = new HttpHeaders();
-            header.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<Publicacion> entidadpublicacion = new HttpEntity(publicacionEntity, header);
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entidadpublicacion, String.class);
-            if (response.getStatusCode().equals(HttpStatus.OK)) {
+            publicacionEntity.setRutaImg(nombreImagen);
+            ResponseEntity response = servicioWeb.consumirApi("http://localhost:8050/api/publicacion", publicacionEntity);
+            String imagenEncoder = almacenService.convertImgToString(p.getImagenPublicacion());
+            Almacen almacenarImagen = new Almacen(imagenEncoder, nombreImagen);
+            ResponseEntity responseImg = servicioWeb.consumirApi("http://localhost:8050/api/publicacion/upload/nuevo", almacenarImagen);
+            if (response.getStatusCode().equals(HttpStatus.OK) && responseImg.getStatusCode().equals(HttpStatus.OK)) {
                 return new ModelAndView("redirect:/home")
                         .addObject("credencial", credenciales)
                         .addObject("usuario", user);

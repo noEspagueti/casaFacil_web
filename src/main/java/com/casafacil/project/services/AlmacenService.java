@@ -9,5 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface AlmacenService {
 
     public String almacenarArchivo(MultipartFile archivo);
-
+    
+    public String convertImgToString(MultipartFile archivo);
 }
