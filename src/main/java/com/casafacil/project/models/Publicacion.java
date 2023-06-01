@@ -30,5 +30,6 @@ public class Publicacion {
     private String distrito;
     private Usuario usuario;
     @Transient
+    @JsonIgnore
     private MultipartFile imagenPublicacion;
 }

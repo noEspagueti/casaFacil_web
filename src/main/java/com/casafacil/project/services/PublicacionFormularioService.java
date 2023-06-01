@@ -5,12 +5,12 @@
 package com.casafacil.project.services;
 
 import com.casafacil.project.models.Publicacion;
-import com.casafacil.project.models.PublicacionFormulario;
+import com.casafacil.project.models.Usuario;
 
 /**
  *
  * @author Miguel
  */
 public interface PublicacionFormularioService {
-    public Publicacion getPublicacionEntity( PublicacionFormulario p);
+    public Publicacion getPublicacionEntity( Publicacion p, Usuario u);
 }

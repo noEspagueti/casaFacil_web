@@ -29,24 +29,34 @@ body {
 }
 
 /* principal container -> Nav */
+
 .principalContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     box-sizing: content-box;
     height: 30em;
+    background: linear-gradient(179deg, #eaf0ef 40%, #e7ebeb 100%);
+}
+
+.titulo_contain{
+    height: 10em;
+    margin-bottom: 20px;
 }
 
 .principalTittle {
-    text-align: center;
-    color: #fff;
-    font-size: 2.5rem;
-    margin-bottom: 100px;
+    text-align: start;
+    font-family: 'Roboto Slab', serif;
+    background: -webkit-linear-gradient(#c1d8f0, #454543);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bolder;
+    font-size: 6rem;
+    line-height: 80px !important;
+    width:60%;
+    height: 100%;
 }
 
 /* buttonNav */
@@ -181,93 +191,99 @@ select[name="comboBoxNav"] {
 }
 
 /* BODY */
-.cardPort {
+
+.publicacion_container{
+    margin: 10em 0 10em 0;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,20em);
+    column-gap:100px;
+}
+
+.post_container{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: start;
+    width: 100%;
+    height: 36em;
     outline: none;
     border: none;
-    cursor: pointer;
-    margin: 1em 0;
-}
-
-.cardPort:hover {
-    opacity: 0.7;
-    transform: translateY(-10px);
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.3);
     transition: all 0.8s ease-out;
+    box-shadow: 0px 0px 100px -52px #9fbaba;
+    border-radius: 20px 20px 0 0 ;
+
 }
 
-.card {
-    box-sizing: content-box;
+.post_container:hover{
+    transform: translateY(-20px);
+    box-shadow: 0px 0px 100px -52px #363F45;
+}
+
+.img_container{
+    width: 100%;
+    height: 15em;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.img_container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.description-container{
+    margin: 15px 0;
+}
+
+.titulo_description{
+    margin:0;
+}
+.titulo_description h1{
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin:0;
+    color:#2E4053;
     padding: 10px;
 }
 
-.containPost {
-    font-size: 15px;
-    background: #ECF0F1;
+.detalles_container{
+    padding:10px;
 }
 
-.callContactar {
-    border: none;
+.detalles_container p{
+    font-size: 2em;
+    font-weight: 700;
+    margin:0;
+}
+
+.etiquetas{
+    height: 40px;
+    display:flex;
+    padding: 0 20px;
+    gap:0.5em;
+}
+.etiquetas span{
+    padding: 10px 15px;
+    color:#fff;
+    font-weight: 500;
     border-radius: 5px;
-    outline: none;
-    font-weight: 600;
-    color: #ECF0F1;
-    background-color: salmon;
-    border: 1px solid salmon;
 }
 
-.callContactar:hover {
-    transition: all 0.2s ease-in;
-    color: #302f2f;
-    background-color: transparent;
+.etiquetas span:nth-child(1){
+    background: #939393;
 }
-
-.callToAction {
-    margin: 2em 0 0 0;
+.etiquetas span:nth-child(2){
+    background: #F7DC6F;
 }
-
-@media ( max-width :1199px) {
-    .callToAction {
-        position: inherit;
-        margin: 0 0 0 0;
-    }
-}
-
-@media ( max-width :993px) {
-    .cardPort {
-        margin-bottom: 20em;
-    }
-    .row {
-        display: block;
-        flex-direction: column;
-    }
-    .col-md-8 {
-        width: 100%;
-    }
-    .containPost {
-        width: 100%;
-        height: 100%;
-        background: #ECF0F1;
-    }
-    .containImg, .containImg img {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-@media ( max-width :767px) {
-    .callToAction {
-        position: relative;
-        margin: 0.5em 0 0 0;
-    }
-    .containPost {
-        height: 100%;
-    }
-    .containerCallToAction {
-        background-color: salmon;
-        width: 100%;
-    }
-}
-
 /* FOOTER */
 .footer {
     padding: 30px 0;
@@ -379,6 +395,7 @@ select[name="comboBoxNav"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position:static;
 }
 .icon-profile{
     display: flex;
@@ -389,20 +406,21 @@ select[name="comboBoxNav"] {
     cursor: pointer;
 }
 
+
 .profile-contain{
     background: #fff;
     width:15em;
     height: 17em;
-    position: fixed;
+    position: absolute;
     top: 6em;
+    opacity: 0;
     box-sizing: border-box;
     border-radius: 10px;
-    opacity: 0;
     overflow: hidden;
     animation-name: profile;
     transform: translateY(20px);
     transition: all 0.3s ease-out;
-     box-shadow: 3px 6px 23px -3px rgba(138,137,137,0.75);
+    box-shadow: 3px 6px 23px -3px rgba(138,137,137,0.75);
     -webkit-caja-sombra: 3px 6px 23px -3px rgba(138,137,137,0.75);
     -moz-caja-sombra: 3px 6px 23px -3px rgba(138,137,137,0.75);
 }
@@ -410,6 +428,7 @@ select[name="comboBoxNav"] {
 .active{
     opacity: 1;
     transform: translateY(0);
+    position: var;
 }
 
 .profile-user{

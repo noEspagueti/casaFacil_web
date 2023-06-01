@@ -4,33 +4,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.casafacil.project.models.Credenciales;
-import com.casafacil.project.models.Publicacion;
-import com.casafacil.project.models.PublicacionFormulario;
-import com.casafacil.project.models.Usuario;
-import com.casafacil.project.models.Almacen;
+import com.casafacil.project.models.*;
 import com.casafacil.project.services.AlmacenServiceImpl;
-import com.casafacil.project.services.PublicacionFormularioImpl;
+import com.casafacil.project.services.PublicacionFormularioServiceImpl;
 import com.casafacil.project.services.webServiceImpl;
-
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping(value = {"/", "home"})
@@ -39,41 +26,41 @@ public class UsuarioController {
     @Autowired
     private AlmacenServiceImpl almacenService;
     @Autowired
-    private PublicacionFormularioImpl publicacionFormularioService;
+    private PublicacionFormularioServiceImpl publicacionFormularioService;
     @Autowired
     private webServiceImpl servicioWeb;
-
-    private RestTemplate restTemplate;
 
     @GetMapping(value = {"/", "/home"})
     public ModelAndView home(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-        return new ModelAndView("index")
+        List<Publicacion> listaPublicacion = (List<Publicacion>) servicioWeb
+                .methoGet("http://localhost:8050/api/publicacion/all", new ArrayList<Publicacion>());
+        session.setAttribute("listaPublicaciones", listaPublicacion);
+        return new ModelAndView("index.html")
                 .addObject("credencial", credenciales)
+                .addObject("listaPublicacion", session.getAttribute("listaPublicaciones"))
                 .addObject("usuario", user);
     }
 
     @GetMapping("/customer/account/login")
     public ModelAndView mostrarLoginUsuario() {
-        return new ModelAndView("./views/login.html").
-                addObject("titulo", "Iniciar sesión").
-                addObject("credenciales", new Credenciales());
+        return new ModelAndView("./views/login.html").addObject("titulo", "Iniciar sesión").addObject("credenciales",
+                new Credenciales());
     }
 
-    //LOGIN
+    // LOGIN
     @PostMapping("/customer/account/login")
-    public ModelAndView validarCredenciales(@Validated Credenciales c, BindingResult bindingResult, HttpSession session) {
+    public ModelAndView validarCredenciales(@Validated Credenciales c, BindingResult bindingResult,
+            HttpSession session) {
         if (c.getCorreo() == null || c.getClave() == null || bindingResult.hasErrors()) {
             return new ModelAndView("./views/login")
                     .addObject("titulo", "Iniciar sesión")
                     .addObject("credenciales", c);
         } else {
-            String url = "http://localhost:8050/api/usuarios/" + c.getCorreo().trim();
             try {
-                restTemplate = new RestTemplate();
-                ResponseEntity<Usuario> response = restTemplate.getForEntity(url.trim(), Usuario.class);
-                Usuario usuarioCredencial = response.getBody();
+                String url = "http://localhost:8050/api/usuarios/" + c.getCorreo().trim();
+                Usuario usuarioCredencial = (Usuario) servicioWeb.methoGet(url, new Usuario());
                 Credenciales credencial = usuarioCredencial.getCredenciales();
                 session.setAttribute("credencialUser", credencial);
                 session.setAttribute("usuarioLogueado", usuarioCredencial);
@@ -91,7 +78,7 @@ public class UsuarioController {
         }
     }
 
-    //REGISTRAR
+    // REGISTRAR
     @GetMapping("/customer/account/registrar")
     public ModelAndView mostrarRegistroUsuario() {
         return new ModelAndView("views/registrar")
@@ -102,7 +89,8 @@ public class UsuarioController {
     @PostMapping("/customer/account/registrar")
     public ModelAndView registrarUsuario(@Validated Usuario u, BindingResult bindingResult) {
         if (bindingResult.hasErrors() || u.getApellido().isEmpty()
-                || u.getCredenciales().getCorreo().isEmpty() || u.getCredenciales().getClave().isEmpty() || u.getNombre().isEmpty()
+                || u.getCredenciales().getCorreo().isEmpty() || u.getCredenciales().getClave().isEmpty()
+                || u.getNombre().isEmpty()
                 || u.getDireccion().isEmpty() || u.getDistrito().isEmpty()
                 || u.getCelular().isEmpty()) {
             return new ModelAndView("views/registrar")
@@ -117,7 +105,7 @@ public class UsuarioController {
         return null;
     }
 
-    //LOGOUT
+    // LOGOUT
     @RequestMapping("/logout")
     @GetMapping
     public ModelAndView logout(HttpSession session) {
@@ -128,7 +116,7 @@ public class UsuarioController {
                 .addObject("usuario", null);
     }
 
-    //PUBLICAR
+    // PUBLICAR
     @GetMapping("publicar/nuevo")
     public ModelAndView RegistroPublicacion(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
@@ -140,15 +128,17 @@ public class UsuarioController {
         }
         return new ModelAndView("views/publicar")
                 .addObject("titulo", "Publicar Inmueble")
-                .addObject("publicacion", new PublicacionFormulario())
+                .addObject("publicacion", new Publicacion())
                 .addObject("credencial", credenciales)
                 .addObject("usuario", user);
     }
 
     @PostMapping("publicar/nuevo")
-    public ModelAndView publicar(@Validated PublicacionFormulario p, BindingResult bindingResult, HttpSession session) {
+    public ModelAndView publicar(@Validated Publicacion p, BindingResult bindingResult, HttpSession session) {
+        
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
+        
         if (bindingResult.hasErrors() || p.getImagenPublicacion().isEmpty()) {
             if (p.getImagenPublicacion().isEmpty()) {
                 bindingResult.rejectValue("imagenPublicacion", "MultipartNotEmpty");
@@ -159,15 +149,12 @@ public class UsuarioController {
                     .addObject("credencial", credenciales)
                     .addObject("usuario", user);
         } else {
-            String nombreImagen = almacenService.almacenarArchivo(p.getImagenPublicacion());
-            Publicacion publicacionEntity = publicacionFormularioService.getPublicacionEntity(p);
-            publicacionEntity.setUsuario(user);
+            String nombreImagen = almacenService.almacenarArchivos(p.getImagenPublicacion());
+            Publicacion publicacionEntity = publicacionFormularioService.getPublicacionEntity(p, user);
             publicacionEntity.setRutaImg(nombreImagen);
-            ResponseEntity response = servicioWeb.consumirApi("http://localhost:8050/api/publicacion", publicacionEntity);
-            String imagenEncoder = almacenService.convertImgToString(p.getImagenPublicacion());
-            Almacen almacenarImagen = new Almacen(imagenEncoder, nombreImagen);
-            ResponseEntity responseImg = servicioWeb.consumirApi("http://localhost:8050/api/publicacion/upload/nuevo", almacenarImagen);
-            if (response.getStatusCode().equals(HttpStatus.OK) && responseImg.getStatusCode().equals(HttpStatus.OK)) {
+            ResponseEntity response = servicioWeb.consumirApi("http://localhost:8050/api/publicacion",publicacionEntity);
+            
+            if (response.getStatusCode().equals(HttpStatus.OK)) {
                 return new ModelAndView("redirect:/home")
                         .addObject("credencial", credenciales)
                         .addObject("usuario", user);
