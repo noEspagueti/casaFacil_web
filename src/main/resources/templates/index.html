@@ -7,11 +7,36 @@
 <!-- PRINCIPAL -->
 <div th:include="principal :: principal"></div>
 
+<!--Selectores para el filtro de ciudad y distrito -->
+<div class="container">
+    <div class="publicaciones-head">
+        <div class="publicaciones-head-index">
+            <p th:text="${#lists.size(listaPublicacion)} + ' inmuebles'"></p>
+            <div class="publicaciones-head-filters">
+                <div class="distrito-filter">
+                    <label>Filtrar por ciudad: </label>
+                    <select name="comboCiudad" class="comboBoxfilter" id="comboCiudad" onchange="getDistrito()">
+                        <option selected>Elige una ciudad</option>
+                        <option th:each="c : ${ciudades}" th:object="${c}" th:value="${c}" th:text="${c}"></option>
+                    </select> 
+                </div>
+                <div class="ciudad-filter">
+                    <label>Filtrar por distrito: </label>
+                    <select name="comboCiudad" class="comboBoxfilter" id="comboDistrito" >
+                        <option selected>...</option>
+                    </select> 
+                </div>
+            </div>
 
+        </div>
+    </div>
+</div>
+
+<.<!-- CONTENEDOR DE PUBLICACIONES -->
 
 <div class="container" style="display:flex; justify-content: center;">
     <div class="publicacion_container">
-        <button th:each="lista : ${listaPublicacion}" th:object="${lista}" class="post_container">
+        <a th:each="lista : ${listaPublicacion}" th:object="${lista}" class="post_container" th:href="'/post/' + *{idPublicacion}">
             <div class ="img_container">
                 <img th:src="@{/assets/{filename}(filename=*{rutaImg})}" th:alt="*{rutaImg}"> 
             </div>
@@ -28,7 +53,7 @@
                 <span th:text="*{tipoPublicacion}"></span>
                 <span th:text="*{tipoInmueble}"></span>
             </div>
-        </button> 
+        </a> 
     </div>
 </div>
 

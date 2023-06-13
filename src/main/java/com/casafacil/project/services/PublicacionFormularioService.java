@@ -12,5 +12,5 @@ import com.casafacil.project.models.Usuario;
  * @author Miguel
  */
 public interface PublicacionFormularioService {
-    public Publicacion getPublicacionEntity( Publicacion p, Usuario u);
+    public Publicacion getPublicacionEntity( Publicacion p, Usuario u,String nombreRuta);
 }

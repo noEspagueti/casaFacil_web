@@ -192,10 +192,63 @@ select[name="comboBoxNav"] {
 
 /* BODY */
 
+.publicaciones-head{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 5em;
+    box-sizing: content-box;
+    margin: 8em 0 8em 0 ;
+}
+
+.publicaciones-head-index{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4em;
+    width: 100%;
+    border-bottom: 1px solid #c6c6c6;
+
+}
+
+.publicaciones-head-index > p{
+    font-family: 'Arimo', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.publicaciones-head-filters{
+    width: 40em;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap:20px;
+}
+
+.distrito-filter,.ciudad-filter{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+select[name="comboCiudad"],select[name="comboDistrito"] {
+    border: none;
+    outline: 2px solid #c3d1d6;
+    background-color: #f4f7f8;
+    width: 10em;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .publicacion_container{
-    margin: 10em 0 10em 0;
+    background: linear-gradient(11deg, #eaf0ef 30%, #f9f9f9 50%);
+    padding: 20px;
+    margin: 2em 0 10em 0;
     height: 100%;
     display: grid;
+    gap: 80px;
     grid-template-columns: repeat(3,20em);
     column-gap:100px;
 }
@@ -206,13 +259,15 @@ select[name="comboBoxNav"] {
     overflow: hidden;
     text-align: start;
     width: 100%;
-    height: 36em;
+    height: 31em;
     outline: none;
     border: none;
     transition: all 0.8s ease-out;
-    box-shadow: 0px 0px 100px -52px #9fbaba;
-    border-radius: 20px 20px 0 0 ;
-
+    box-shadow: 0px 0px 100px -52px #617979;
+    border-radius: 20px 20px 10px 10px;
+    text-decoration: none;
+    background: #fff;
+    color: #202020;
 }
 
 .post_container:hover{
@@ -248,7 +303,7 @@ select[name="comboBoxNav"] {
 }
 .titulo_description h1{
     font-family: 'League Spartan', sans-serif;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: 600;
     margin:0;
     color:#2E4053;
@@ -260,7 +315,7 @@ select[name="comboBoxNav"] {
 }
 
 .detalles_container p{
-    font-size: 2em;
+    font-size: 1.2em;
     font-weight: 700;
     margin:0;
 }
@@ -284,6 +339,9 @@ select[name="comboBoxNav"] {
 .etiquetas span:nth-child(2){
     background: #F7DC6F;
 }
+
+
+
 /* FOOTER */
 .footer {
     padding: 30px 0;
@@ -413,13 +471,13 @@ select[name="comboBoxNav"] {
     height: 17em;
     position: absolute;
     top: 6em;
+    display: none;
     opacity: 0;
     box-sizing: border-box;
     border-radius: 10px;
     overflow: hidden;
     animation-name: profile;
-    transform: translateY(20px);
-    transition: all 0.3s ease-out;
+    transition: all 2s ease-out;
     box-shadow: 3px 6px 23px -3px rgba(138,137,137,0.75);
     -webkit-caja-sombra: 3px 6px 23px -3px rgba(138,137,137,0.75);
     -moz-caja-sombra: 3px 6px 23px -3px rgba(138,137,137,0.75);
@@ -427,8 +485,7 @@ select[name="comboBoxNav"] {
 
 .active{
     opacity: 1;
-    transform: translateY(0);
-    position: var;
+    display: block;
 }
 
 .profile-user{
@@ -548,4 +605,130 @@ select[name="comboBoxNav"] {
 
 .container_Publicacion{
     width: 50em;
+}
+
+
+
+
+/*Mis publicaciones*/
+.container-head{
+
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin: 4em 0;
+}
+
+.container-head-Title{
+    width: max-content;
+}
+
+.container-head-description{
+    width: max-content;
+}
+
+.container-head-description > p {
+    font-family: 'Arimo', sans-serif;
+    font-size: 1.2rem;
+}
+
+.container-head-Title > h1 {
+    font-family: 'Arimo', sans-serif;
+    font-weight: 700;
+}
+
+
+.mipublicacion_container{
+    margin: 0 0 10em 0;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,20em);
+    column-gap:100px;
+}
+
+.mipost_container{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: start;
+    width: 100%;
+    height: 31em;
+    outline: none;
+    border: none;
+    transition: all 0.8s ease-out;
+    box-shadow: 0px 0px 100px -52px #9fbaba;
+    border-radius: 20px 20px 0 0 ;
+
+}
+
+.mipost_container:hover{
+    transform: translateY(-20px);
+    box-shadow: 0px 0px 100px -52px #363F45;
+}
+
+.miimg_container{
+    width: 100%;
+    height: 15em;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.miimg_container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.midescription-container{
+    margin: 15px 0;
+}
+
+.mititulo_description{
+    margin:0;
+}
+.mititulo_description h1{
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    margin:0;
+    color:#2E4053;
+    padding: 10px;
+}
+
+.midetalles_container{
+    padding:10px;
+}
+
+.midetalles_container p{
+    font-size: 1.2em;
+    font-weight: 700;
+    margin:0;
+}
+
+.mietiquetas{
+    height: 40px;
+    display:flex;
+    padding: 0 20px;
+    gap:0.5em;
+}
+.mietiquetas span{
+    padding: 10px 15px;
+    color:#fff;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.mietiquetas span:nth-child(1){
+    background: #939393;
+}
+.mietiquetas span:nth-child(2){
+    background: #F7DC6F;
 }

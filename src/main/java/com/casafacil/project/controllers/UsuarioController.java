@@ -34,13 +34,14 @@ public class UsuarioController {
     public ModelAndView home(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-        List<Publicacion> listaPublicacion = (List<Publicacion>) servicioWeb
-                .methoGet("http://localhost:8050/api/publicacion/all", new ArrayList<Publicacion>());
-        session.setAttribute("listaPublicaciones", listaPublicacion);
+        List<Publicacion> listaPublicacion = (List<Publicacion>) servicioWeb.methoGet("http://localhost:8050/api/publicacion/all", new ArrayList<Publicacion>());
+        List<String> listaCiudades = (List<String>) servicioWeb.methoGet("http://localhost:8050/api/publicacion/allCiudad", new ArrayList<String>());
+        session.setAttribute("publicaciones", listaPublicacion);
         return new ModelAndView("index.html")
                 .addObject("credencial", credenciales)
-                .addObject("listaPublicacion", session.getAttribute("listaPublicaciones"))
-                .addObject("usuario", user);
+                .addObject("listaPublicacion", listaPublicacion)
+                .addObject("usuario", user)
+                .addObject("ciudades", listaCiudades);
     }
 
     @GetMapping("/customer/account/login")
@@ -62,6 +63,8 @@ public class UsuarioController {
                 String url = "http://localhost:8050/api/usuarios/" + c.getCorreo().trim();
                 Usuario usuarioCredencial = (Usuario) servicioWeb.methoGet(url, new Usuario());
                 Credenciales credencial = usuarioCredencial.getCredenciales();
+
+                // * {falta validad los credenciales}
                 session.setAttribute("credencialUser", credencial);
                 session.setAttribute("usuarioLogueado", usuarioCredencial);
                 return new ModelAndView("redirect:/home")
@@ -135,10 +138,10 @@ public class UsuarioController {
 
     @PostMapping("publicar/nuevo")
     public ModelAndView publicar(@Validated Publicacion p, BindingResult bindingResult, HttpSession session) {
-        
+
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-        
+
         if (bindingResult.hasErrors() || p.getImagenPublicacion().isEmpty()) {
             if (p.getImagenPublicacion().isEmpty()) {
                 bindingResult.rejectValue("imagenPublicacion", "MultipartNotEmpty");
@@ -150,10 +153,8 @@ public class UsuarioController {
                     .addObject("usuario", user);
         } else {
             String nombreImagen = almacenService.almacenarArchivos(p.getImagenPublicacion());
-            Publicacion publicacionEntity = publicacionFormularioService.getPublicacionEntity(p, user);
-            publicacionEntity.setRutaImg(nombreImagen);
-            ResponseEntity response = servicioWeb.consumirApi("http://localhost:8050/api/publicacion",publicacionEntity);
-            
+            Publicacion publicacionEntity = publicacionFormularioService.getPublicacionEntity(p, user, nombreImagen);
+            ResponseEntity response = servicioWeb.consumirApi("http://localhost:8050/api/publicacion", publicacionEntity);
             if (response.getStatusCode().equals(HttpStatus.OK)) {
                 return new ModelAndView("redirect:/home")
                         .addObject("credencial", credenciales)
@@ -162,6 +163,37 @@ public class UsuarioController {
             return null;
         }
 
+    }
+
+    //MOSTRAR TODOS LAS PUBLICACIONES DEL USUARIO
+    @GetMapping("/publicaciones")
+    public ModelAndView showAllPublicaciones(HttpSession session) {
+        Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
+        Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
+
+        if (user != null) {
+            //Solicitud para obtener toda la lista de publicacion de un usuario
+            String urlGetPublicaciones = ("http://localhost:8050/api/publicacion/" + user.getDniUsuario()).trim();
+            List<Publicacion> listaPublicacionUsuario = (List<Publicacion>) servicioWeb.methoGet(urlGetPublicaciones, new ArrayList<Publicacion>());
+            return new ModelAndView("views/misPublicaciones")
+                    .addObject("credencial", credenciales)
+                    .addObject("usuario", new Usuario())
+                    .addObject("publicacionUsuario", listaPublicacionUsuario);
+        }
+
+        return new ModelAndView("views/misPublicaciones")
+                .addObject("credencial", credenciales)
+                .addObject("usuario", user);
+    }
+
+    //MOSTRAR CONTACTOS
+    @GetMapping("/contactos")
+    public ModelAndView showContactos(HttpSession session) {
+        Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
+        Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
+        return new ModelAndView("views/misContactos")
+                .addObject("credencial", credenciales)
+                .addObject("usuario", user);
     }
 
 }

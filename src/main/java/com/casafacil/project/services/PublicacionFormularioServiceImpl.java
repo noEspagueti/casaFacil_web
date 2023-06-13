@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class PublicacionFormularioServiceImpl implements PublicacionFormularioService {
 
     @Override
-    public Publicacion getPublicacionEntity(Publicacion p, Usuario u) {
+    public Publicacion getPublicacionEntity(Publicacion p, Usuario u, String nombreRuta) {
         Publicacion publicacionEntity = new Publicacion();
         publicacionEntity.setTitulo(p.getTitulo());
         publicacionEntity.setContenido(p.getContenido());
@@ -25,6 +25,7 @@ public class PublicacionFormularioServiceImpl implements PublicacionFormularioSe
         publicacionEntity.setTipoPublicacion(p.getTipoPublicacion());
         publicacionEntity.setTipoInmueble(p.getTipoInmueble());
         publicacionEntity.setCiudad(p.getCiudad());
+        publicacionEntity.setRutaImg(nombreRuta);
         publicacionEntity.setUsuario(u);
         publicacionEntity.setDistrito(p.getDistrito());
         publicacionEntity.setFecha(new Date());

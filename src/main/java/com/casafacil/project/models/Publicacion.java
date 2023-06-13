@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Data
 @JsonSerialize
 public class Publicacion {
+    private Long idPublicacion;
     private String titulo;
     private String contenido;
     private Double precio;
