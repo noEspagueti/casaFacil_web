@@ -14,27 +14,6 @@ async function getFetch(url) {
     return getData;
 }
 
-//Elementos para post
-//let options = {
-//    "img_container": [
-//        {
-//            
-//        }
-//    ],
-//    "description-container": [],
-//    "etiquetas": []
-//};
-//
-//const createCompornentsDiv = (parentNode, contenedorName = [], option = {}) => {
-//    contenedor.forEach(content => {
-//        let content = document.createElement("DIV");
-//        content.classList.add(content);
-//        parentNode.appendChild(content);
-//    });
-//};
-
-
-
 const postComponent = (publicacion) => {
     const publicacionContainer = document.querySelector(".publicacion_post_container");
     let ancord = document.createElement("a");
@@ -108,10 +87,34 @@ const changeDistrito = () => {
 };
 
 
+
+
+
+
+//RECARGAR TODOS LOS ELEMENTOS DEL DOCUMENT
 document.addEventListener("DOMContentLoaded", () => {
     changeDistrito();
     selectorCiudad.addEventListener("change", changeDistrito);
-})
+
+    let fade = document.querySelectorAll(".pause");
+    if (document.documentElement.scrollTop >= 0) {
+
+        fade.forEach(item => {
+            item.style.opacity = 1;
+            item.classList.replace("pause", "fade_left");
+        });
+
+        let introduccionDescription = document.querySelector(".description_introduccion");
+        let introduccionTitulo = document.querySelector(".titulo_introduccion");
+        let introduccionImg = document.querySelector(".img_container_introduccion");
+
+        document.addEventListener("scroll", () => {
+            introduccionDescription.style.transform = `translateX(-${document.documentElement.scrollTop}px)`;
+            introduccionTitulo.style.transform = `translateX(${document.documentElement.scrollTop}px)`;
+            introduccionImg.style.transform = `translateX(${document.documentElement.scrollTop}px)`;
+        });
+    }
+});
 
 
 

@@ -55,33 +55,34 @@ public class UsuarioController {
             return new ModelAndView("./views/login")
                     .addObject("titulo", "Iniciar sesión")
                     .addObject("credenciales", c);
-        } else {
-            try {
-                String url = "http://localhost:8050/api/usuarios/" + c.getCorreo().trim();
-                Usuario usuarioCredencial = (Usuario) servicioWeb.methoGet(url, new Usuario());
-                Credenciales credencial = usuarioCredencial.getCredenciales();
-                
-                // * {falta validar los credenciales}
-                
-                
+        }
+        try {
+            String url = "http://localhost:8050/api/usuarios/" + c.getCorreo().trim();
+            Usuario usuarioCredencial = (Usuario) servicioWeb.methoGet(url, new Usuario());
+            Credenciales credencial = usuarioCredencial.getCredenciales();
+            if (c.getClave().equals(credencial.getClave())) {
                 session.setAttribute("credencialUser", credencial);
                 session.setAttribute("usuarioLogueado", usuarioCredencial);
                 return new ModelAndView("redirect:/home")
                         .addObject("credencial", session.getAttribute("credencialUser"))
                         .addObject("titulo", "Iniciar sesión")
                         .addObject("usuario", session.getAttribute("usuarioLogueado"));
-            } catch (HttpClientErrorException.NotFound notFound) {
-                String getMensaje = notFound.getMessage();
-                return new ModelAndView("./views/login")
-                        .addObject("titulo", "Iniciar sesión")
-                        .addObject("credenciales", new Credenciales())
-                        .addObject("noExisteUsuario", true)
-                        .addObject("error", getMensaje);
             }
+            return new ModelAndView("./views/login")
+                    .addObject("titulo", "Iniciar sesión")
+                    .addObject("credenciales", c);
+
+        } catch (HttpClientErrorException.NotFound notFound) {
+            String getMensaje = notFound.getMessage();
+            return new ModelAndView("./views/login")
+                    .addObject("titulo", "Iniciar sesión")
+                    .addObject("credenciales", new Credenciales())
+                    .addObject("noExisteUsuario", true)
+                    .addObject("error", getMensaje);
         }
+
     }
 
-    
     // REGISTRAR
     @GetMapping("/customer/account/registrar")
     public ModelAndView mostrarRegistroUsuario() {

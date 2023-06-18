@@ -64,8 +64,12 @@ nav{
     font-weight: 800;
     text-decoration: none;
     color: #454545;
-}
+    padding: 10px;
+    transition: all 0.2s ease-in;
 
+}
+.sesion_container a:nth-child(1):hover{
+}
 
 .sesion_container a:nth-child(2){
     cursor: pointer;
@@ -140,10 +144,6 @@ nav{
 
 
 .callToActionPublicar {
-    outline: none;
-    border: none;
-    background: transparent;
-    cursor: pointer;
 }
 
 .formLogin {
@@ -164,7 +164,7 @@ nav{
     align-items: center;
     box-sizing: content-box;
     height: 50em;
-    background: linear-gradient(179deg, #eaf0ef 40%, #e7ebeb 100%);
+    background: linear-gradient(180deg, #fffffc 40%, #f7f7f7 100%);
 }
 .principal{
     display:flex;
@@ -973,13 +973,32 @@ select[name="comboCiudad"],select[name="comboDistrito"] {
 .titulo_introduccion p {
     font-size: 4rem;
     line-height: 70px !important;
+    opacity: 0;
+}
+
+.fade_left{
+    animation: down 1s ease;
+}
+
+@keyframes down {
+    0%{
+        transform: translateX(-50px);
+
+
+    }
+    100%{
+        transform: translateX(0);
+
+    }
 }
 
 .description_introduccion{
     width: 100%;
     font-size: 1.2rem;
 }
-
+.description_introduccion p{
+    opacity : 0 ;
+}
 .introduccion{
     display: flex;
     justify-content: center;
@@ -994,7 +1013,12 @@ select[name="comboCiudad"],select[name="comboDistrito"] {
     height: max-content;
     display: flex;
     justify-content: center;
+    z-index: -111111;
+
 }
 .img_container_introduccion img{
     height: 700px;
 }
+
+
+
