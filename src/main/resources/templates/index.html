@@ -4,60 +4,53 @@
 <!-- NAVBAR -->
 <div th:include="navbar :: navbar"></div>
 
-<!-- PRINCIPAL -->
-<div th:include="principal :: principal"></div>
-
-<!--Selectores para el filtro de ciudad y distrito -->
+<!--Introducción-->
 <div class="container">
-    <div class="publicaciones-head">
-        <div class="publicaciones-head-index">
-            <p th:text="${#lists.size(listaPublicacion)} + ' inmuebles'"></p>
-            <div class="publicaciones-head-filters">
-                <div class="distrito-filter">
-                    <label>Filtrar por ciudad: </label>
-                    <select name="comboCiudad" class="comboBoxfilter" id="comboCiudad" onchange="getDistrito()">
-                        <option selected>Elige una ciudad</option>
-                        <option th:each="c : ${ciudades}" th:object="${c}" th:value="${c}" th:text="${c}"></option>
-                    </select> 
-                </div>
-                <div class="ciudad-filter">
-                    <label>Filtrar por distrito: </label>
-                    <select name="comboCiudad" class="comboBoxfilter" id="comboDistrito" >
-                        <option selected>...</option>
-                    </select> 
-                </div>
+    <div class="introduccion">
+        <div class="introduccion_content">
+            <div class="titulo_introduccion">
+                <p>Descubre el hogar de tus sueños &#128205;</p>
             </div>
-
+            <div class="description_introduccion">
+                <p>
+                    Expertos en bienes raíces, variedad de opciones y el mejor servicio para encontrar la propiedad perfecta para ti.
+                </p>
+            </div>    
+        </div>
+        <div class="img_container_introduccion">
+            <img src="public/home.png" alt="CasaFacil bebe"/>
         </div>
     </div>
 </div>
 
-<.<!-- CONTENEDOR DE PUBLICACIONES -->
 
-<div class="container" style="display:flex; justify-content: center;">
-    <div class="publicacion_container">
-        <a th:each="lista : ${listaPublicacion}" th:object="${lista}" class="post_container" th:href="'/post/' + *{idPublicacion}">
-            <div class ="img_container">
-                <img th:src="@{/assets/{filename}(filename=*{rutaImg})}" th:alt="*{rutaImg}"> 
-            </div>
-            <div class="description-container">
-                <div class="titulo_description">
-                    <h1 th:text="*{titulo}">titulo</h1>
+<!-- PRINCIPAL -->
+<div th:include="principal :: principal"></div>
+
+
+<!--Selectores para el filtro de ciudad y distrito -->
+<div class="container">
+    <div class="publicaciones_container">
+        <div class="publicaciones-head">
+            <div class="publicaciones-head-index">
+                <p class="cantidad_post" style="font-size: 1.1rem; font-weight: 300"></p>
+                <div class="publicaciones-head-filters">
+                    <div class="distrito-filter">
+                        <label>Filtrar por ciudad: </label>
+                        <select name="comboCiudad" class="comboBoxfilter" id="comboCiudad">
+                            <option th:each="c : ${ciudades}" th:object="${c}" th:value="${c}" th:text="${c}"></option>
+                        </select> 
+                    </div>
                 </div>
-                <div class="detalles_container">
-                    <p th:text="*{distrito} + '-' + *{ciudad}" style="font-size: 1.5em; font-weight: 200;"></p>
-                    <p th:text="'S/. ' + ${#numbers.formatDecimal(lista.precio, 2, 'COMMA', 2, 'POINT')}"></p>
-                </div>
             </div>
-            <div class="etiquetas">
-                <span th:text="*{tipoPublicacion}"></span>
-                <span th:text="*{tipoInmueble}"></span>
+        </div>
+
+        <!-- CONTENEDOR DE PUBLICACIONES -->
+        <div class="container" style="display:flex; justify-content: center;">
+            <div class="publicacion_post_container">
             </div>
-        </a> 
+        </div>
     </div>
 </div>
-
-
-
 <!-- FOOTER -->
 <div th:include="footer :: footer"></div>

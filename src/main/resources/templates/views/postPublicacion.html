@@ -5,8 +5,27 @@
 <div th:include="navbar :: navbar"></div>
 
 <div class="container">
-    <div class="post_content" style="height: 100vh; background: salmon;">
-        
+    <div class="container_post" style="padding:0; margin: 60px 0;" th:object="${post}">
+
+        <div class="post_description_head">
+            <p th:text="*{ciudad} + ' - ' + *{distrito}"></p>
+        </div>
+        <div class="post_content" >
+            <div class="post_img">
+                <img th:src="@{/assets/{filename}(filename=*{rutaImg})}" th:alt="*{rutaImg}"> 
+            </div>
+            <div class="post_description">
+                <div class ="post_tittle">
+                    <h3 th:text="*{titulo}"></h3>
+                </div>
+                <p th:text="*{contenido}"></p>
+                <div class="postEtiquetas">
+                    <span th:text="*{tipoPublicacion}"></span>
+                    <span th:text="*{tipoInmueble}"></span>
+                </div>
+                <h1 th:text="${'S/.' + #numbers.formatDecimal(post.precio, 2, 'COMMA', 2, 'POINT')}"></h1>
+            </div>
+        </div>
     </div>
 </div>
 

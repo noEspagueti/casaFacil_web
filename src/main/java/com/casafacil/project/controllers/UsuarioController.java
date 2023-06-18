@@ -34,12 +34,9 @@ public class UsuarioController {
     public ModelAndView home(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-        List<Publicacion> listaPublicacion = (List<Publicacion>) servicioWeb.methoGet("http://localhost:8050/api/publicacion/all", new ArrayList<Publicacion>());
         List<String> listaCiudades = (List<String>) servicioWeb.methoGet("http://localhost:8050/api/publicacion/allCiudad", new ArrayList<String>());
-        session.setAttribute("publicaciones", listaPublicacion);
         return new ModelAndView("index.html")
                 .addObject("credencial", credenciales)
-                .addObject("listaPublicacion", listaPublicacion)
                 .addObject("usuario", user)
                 .addObject("ciudades", listaCiudades);
     }
@@ -63,12 +60,15 @@ public class UsuarioController {
                 String url = "http://localhost:8050/api/usuarios/" + c.getCorreo().trim();
                 Usuario usuarioCredencial = (Usuario) servicioWeb.methoGet(url, new Usuario());
                 Credenciales credencial = usuarioCredencial.getCredenciales();
-
-                // * {falta validad los credenciales}
+                
+                // * {falta validar los credenciales}
+                
+                
                 session.setAttribute("credencialUser", credencial);
                 session.setAttribute("usuarioLogueado", usuarioCredencial);
                 return new ModelAndView("redirect:/home")
                         .addObject("credencial", session.getAttribute("credencialUser"))
+                        .addObject("titulo", "Iniciar sesión")
                         .addObject("usuario", session.getAttribute("usuarioLogueado"));
             } catch (HttpClientErrorException.NotFound notFound) {
                 String getMensaje = notFound.getMessage();
@@ -81,6 +81,7 @@ public class UsuarioController {
         }
     }
 
+    
     // REGISTRAR
     @GetMapping("/customer/account/registrar")
     public ModelAndView mostrarRegistroUsuario() {
@@ -100,7 +101,8 @@ public class UsuarioController {
                     .addObject("titulo", "Registrar usuario")
                     .addObject("usuario", u);
         } else {
-            ResponseEntity response = servicioWeb.consumirApi("http://localhost:8050/api/usuarios", u);
+            String url = "http://localhost:8050/api/usuarios";
+            ResponseEntity response = servicioWeb.consumirApi(url, u);
             if (response.getStatusCode() == HttpStatus.OK) {
                 return new ModelAndView("redirect:/home");
             }
@@ -154,7 +156,8 @@ public class UsuarioController {
         } else {
             String nombreImagen = almacenService.almacenarArchivos(p.getImagenPublicacion());
             Publicacion publicacionEntity = publicacionFormularioService.getPublicacionEntity(p, user, nombreImagen);
-            ResponseEntity response = servicioWeb.consumirApi("http://localhost:8050/api/publicacion", publicacionEntity);
+            String url = "http://localhost:8050/api/publicacion";
+            ResponseEntity response = servicioWeb.consumirApi(url, publicacionEntity);
             if (response.getStatusCode().equals(HttpStatus.OK)) {
                 return new ModelAndView("redirect:/home")
                         .addObject("credencial", credenciales)

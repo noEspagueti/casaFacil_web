@@ -18,7 +18,7 @@
 <div class="container" style="display:flex; justify-content: center;">
     <div class="mipublicacion_container">
         <button th:each="lista : ${publicacionUsuario}" th:object="${lista}" class="mipost_container">
-            <div class ="miimg_container">
+            <div class ="mi_img_container">
                 <img th:src="@{/assets/{filename}(filename=*{rutaImg})}" th:alt="*{rutaImg}"> 
             </div>
             <div class="midescription-container">
