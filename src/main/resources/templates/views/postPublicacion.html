@@ -62,14 +62,26 @@
             </div>
         </div>
         <form class="form_contacto" method="post" th:object="${contactos}" enctype="multipart/form-data">
-            <textarea name="mensaje" cols="30" rows="10" th:field="*{mensaje}" placeholder="Mensaje"></textarea>
+            <textarea name="mensaje" cols="30" rows="10" th:field="*{mensaje}" placeholder="Breve mensaje"
+                class="mensajeContaco"></textarea>
             <div class="button_group">
-                <input type="submit" value="enviar">
+                <input type="submit" value="enviar" id="buttonContactar">
                 <input type="button" value="cancelar" id="buttonCancelar">
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    const formContacto = document.querySelector('.form_contacto');
+    const textArea = document.querySelector('.mensajeContaco');
+    formContacto.addEventListener('submit', (event) => {
+        if (textArea.textContent === null || textArea.textContent === '') {
+            return;
+        }
+    });
+</script>
+
 
 <!-- FOOTER -->
 <div th:include="footer :: footer"></div>

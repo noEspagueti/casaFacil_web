@@ -1,21 +1,16 @@
 package com.casafacil.project.models;
 
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
 
 @Data
 public class Credenciales {
     private Long idCredenciales;
-    @NotBlank
+    @NotBlank(message = "El campo correro es requerido")
     @Email
     private String correo;
-    @NotBlank
+    @NotBlank(message = "El campo clave es requerido")
     private String clave;
-    
 
 }

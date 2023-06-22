@@ -61,8 +61,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
     onEventClik(themeSwitch, () => changeTheme(themeSwitch));
-    elementUI(themeSwitch);
     document.documentElement.setAttribute('theme', localStorage.getItem("tema"));
+    elementUI(localStorage.getItem("tema"));
 
     if (selectorCiudad) {
         changeDistrito();

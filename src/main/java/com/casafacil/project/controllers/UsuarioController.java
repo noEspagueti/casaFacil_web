@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.HttpClientErrorException;
 
 @Controller
 @RequestMapping(value = { "/", "home" })
@@ -168,9 +167,7 @@ public class UsuarioController {
     public ModelAndView showAllPublicaciones(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-
         if (user != null) {
-            // Solicitud para obtener toda la lista de publicacion de un usuario
             String urlGetPublicaciones = ("http://localhost:8050/api/publicacion/" + user.getDniUsuario()).trim();
             List<Publicacion> listaPublicacionUsuario = (List<Publicacion>) servicioWeb.methoGet(urlGetPublicaciones,
                     new ArrayList<Publicacion>());
@@ -179,7 +176,6 @@ public class UsuarioController {
                     .addObject("usuario", new Usuario())
                     .addObject("publicacionUsuario", listaPublicacionUsuario);
         }
-
         return new ModelAndView("views/misPublicaciones")
                 .addObject("credencial", credenciales)
                 .addObject("usuario", user);
