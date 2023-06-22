@@ -8,7 +8,7 @@
             <div class="container_nav">
                 <div class="logo_container">
                     <a href="/home">
-                        <img src="/public/logoweb-01.png" alt="alt"/>
+                        <img src ="/public/logoweb-01.png"alt="casaFacil" id="logo"/>
                     </a>
                 </div>
                 <div class="section_container">
@@ -49,11 +49,11 @@
 
                 </div>
                 <div class="sesion_container">
-                    <a th:if="${titulo != 'Registrar usuario' && titulo != 'Iniciar sesión' && credencial==null}" href="customer/account/login">Iniciar sesión</a>
-                    <a th:if="${titulo != 'Registrar usuario'  && titulo != 'Iniciar sesión' && credencial==null}" href="customer/account/registrar">Crear cuenta</a>
+                    <a th:if="${titulo != 'Registrar usuario' && titulo != 'Iniciar sesión' && credencial==null}" href="/login">Iniciar sesión</a>
+                    <a th:if="${titulo != 'Registrar usuario'  && titulo != 'Iniciar sesión' && credencial==null}" href="/registrar">Crear cuenta</a>
                 </div>
                 <div  th:if="${credencial != null && titulo != 'Publicar Inmueble'}">
-                    <a class="callToActionPublicar fw-bold" href="/publicar/nuevo" style="text-decoration: none; color:#272727;" >Publicar</a>
+                    <a class="callToActionPublicar fw-bold" href="/publicar">Publicar</a>
                 </div>
                 <div  class="profile" th:if="${credencial != null}">         
                     <div class="icon-profile">
@@ -70,7 +70,7 @@
                                 <a href="">Mis favoritos</a>                 
                             </div>
                             <div class="row-publicaciones">
-                                <a href="/publicaciones">Mis publicaciones</a>                 
+                                <a href="/mispublicaciones">Mis publicaciones</a>
                             </div>
                             <div class="row-contactos">
                                 <a href="/contactos">Mis contactos</a>                 
@@ -81,6 +81,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="theme">
+                    <button id="switch_theme" class="light">
+                        <span class="material-symbols-outlined">
+                            dark_mode
+                        </span>
+                    </button>
+                </div>
+
             </div>
         </nav>
     </div>

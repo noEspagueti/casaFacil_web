@@ -1,20 +1,15 @@
-
-
 <th:block th:fragment="footer">
 
 
     <div class="container">
         <div class="footer">
-            <div
-                class="footer_container container-fluid w-100 p-3 rounded-2 gap-4 d-flex flex-column"
+            <div class="footer_container container-fluid w-100 p-3 rounded-2 gap-4 d-flex flex-column"
                 style="opacity: 0.8;">
                 <div class="container">
                     <div class="container_logo">
-                        <img class="img-fluid" width="120" src="/public/logoweb-01.png"
-                             alt="">
+                        <img class="img-fluid" width="120" src="/public/logoweb-01.png" alt="casaFacil" id="logo">
                     </div>
-                    <div
-                        class="d-flex justify-content-between footer_container_content">
+                    <div class="d-flex justify-content-between footer_container_content">
                         <div class="container_footerSection d-flex flex-column gap-1">
                             <p class="footer_tittle m-0">Departamentos</p>
                             <p class="m-0 footer_subtittle">Lima</p>
@@ -38,9 +33,8 @@
                             <p class="footer_tittle m-0">Siguenos</p>
                             <div class="d-flex gap-2" style="color: white;">
                                 <a href=""><i class="bi bi-facebook"></i></a> <a href=""><i
-                                        class="bi bi-instagram"></i></a> <a href=""><i
-                                        class="bi bi-twitter"></i></a> <a href=""><i
-                                        class="bi bi-youtube"></i></a>
+                                        class="bi bi-instagram"></i></a> <a href=""><i class="bi bi-twitter"></i></a> <a
+                                    href=""><i class="bi bi-youtube"></i></a>
                             </div>
 
                         </div>
@@ -50,15 +44,13 @@
         </div>
     </div>
     <!-- BOOTSTRAP JS -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
 
-    <script th:if="${titulo != 'Registrar usuario' && titulo != 'Iniciar sesión' && titulo != 'publicacion'}" src="/js/index.js"></script>
-    <script src="/js/navbar.js"></script>
-</body>
+    <script type="module" src="/js/index.js"></script>
 
-</html>
+    </body>
+
+    </html>
 </th:block>

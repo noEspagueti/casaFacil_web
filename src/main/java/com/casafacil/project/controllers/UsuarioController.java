@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.HttpClientErrorException;
 
 @Controller
-@RequestMapping(value = {"/", "home"})
+@RequestMapping(value = { "/", "home" })
 public class UsuarioController {
 
     @Autowired
@@ -30,25 +30,26 @@ public class UsuarioController {
     @Autowired
     private webServiceImpl servicioWeb;
 
-    @GetMapping(value = {"/", "/home"})
+    @GetMapping(value = { "/", "/home" })
     public ModelAndView home(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-        List<String> listaCiudades = (List<String>) servicioWeb.methoGet("http://localhost:8050/api/publicacion/allCiudad", new ArrayList<String>());
+        List<String> listaCiudades = (List<String>) servicioWeb
+                .methoGet("http://localhost:8050/api/publicacion/allCiudad", new ArrayList<String>());
         return new ModelAndView("index.html")
                 .addObject("credencial", credenciales)
                 .addObject("usuario", user)
                 .addObject("ciudades", listaCiudades);
     }
 
-    @GetMapping("/customer/account/login")
+    @GetMapping("/login")
     public ModelAndView mostrarLoginUsuario() {
         return new ModelAndView("./views/login.html").addObject("titulo", "Iniciar sesión").addObject("credenciales",
                 new Credenciales());
     }
 
     // LOGIN
-    @PostMapping("/customer/account/login")
+    @PostMapping("/login")
     public ModelAndView validarCredenciales(@Validated Credenciales c, BindingResult bindingResult,
             HttpSession session) {
         if (c.getCorreo() == null || c.getClave() == null || bindingResult.hasErrors()) {
@@ -56,9 +57,14 @@ public class UsuarioController {
                     .addObject("titulo", "Iniciar sesión")
                     .addObject("credenciales", c);
         }
-        try {
-            String url = "http://localhost:8050/api/usuarios/" + c.getCorreo().trim();
-            Usuario usuarioCredencial = (Usuario) servicioWeb.methoGet(url, new Usuario());
+        String url = "http://localhost:8050/api/usuarios/" + c.getCorreo().trim();
+        Usuario usuarioCredencial = (Usuario) servicioWeb.methoGet(url, new Usuario());
+        if (usuarioCredencial == null) {
+            return new ModelAndView("./views/login")
+                    .addObject("titulo", "Iniciar sesión")
+                    .addObject("credenciales", new Credenciales())
+                    .addObject("noExisteUsuario", true);
+        } else {
             Credenciales credencial = usuarioCredencial.getCredenciales();
             if (c.getClave().equals(credencial.getClave())) {
                 session.setAttribute("credencialUser", credencial);
@@ -68,30 +74,19 @@ public class UsuarioController {
                         .addObject("titulo", "Iniciar sesión")
                         .addObject("usuario", session.getAttribute("usuarioLogueado"));
             }
-            return new ModelAndView("./views/login")
-                    .addObject("titulo", "Iniciar sesión")
-                    .addObject("credenciales", c);
-
-        } catch (HttpClientErrorException.NotFound notFound) {
-            String getMensaje = notFound.getMessage();
-            return new ModelAndView("./views/login")
-                    .addObject("titulo", "Iniciar sesión")
-                    .addObject("credenciales", new Credenciales())
-                    .addObject("noExisteUsuario", true)
-                    .addObject("error", getMensaje);
         }
-
+        return new ModelAndView("./views/login").addObject("titulo", "Iniciar sesión").addObject("credenciales", c);
     }
 
     // REGISTRAR
-    @GetMapping("/customer/account/registrar")
+    @GetMapping("/registrar")
     public ModelAndView mostrarRegistroUsuario() {
         return new ModelAndView("views/registrar")
                 .addObject("titulo", "Registrar usuario")
                 .addObject("usuario", new Usuario());
     }
 
-    @PostMapping("/customer/account/registrar")
+    @PostMapping("/registrar")
     public ModelAndView registrarUsuario(@Validated Usuario u, BindingResult bindingResult) {
         if (bindingResult.hasErrors() || u.getApellido().isEmpty()
                 || u.getCredenciales().getCorreo().isEmpty() || u.getCredenciales().getClave().isEmpty()
@@ -115,15 +110,14 @@ public class UsuarioController {
     @RequestMapping("/logout")
     @GetMapping
     public ModelAndView logout(HttpSession session) {
-        session.removeAttribute("credencialUser");
-        session.removeAttribute("usuario");
+        session.invalidate();
         return new ModelAndView("redirect:/")
                 .addObject("credencial", null)
                 .addObject("usuario", null);
     }
 
     // PUBLICAR
-    @GetMapping("publicar/nuevo")
+    @GetMapping("/publicar")
     public ModelAndView RegistroPublicacion(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
@@ -139,7 +133,7 @@ public class UsuarioController {
                 .addObject("usuario", user);
     }
 
-    @PostMapping("publicar/nuevo")
+    @PostMapping("/publicar")
     public ModelAndView publicar(@Validated Publicacion p, BindingResult bindingResult, HttpSession session) {
 
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
@@ -169,16 +163,17 @@ public class UsuarioController {
 
     }
 
-    //MOSTRAR TODOS LAS PUBLICACIONES DEL USUARIO
-    @GetMapping("/publicaciones")
+    // MOSTRAR TODOS LAS PUBLICACIONES DEL USUARIO
+    @GetMapping("/mispublicaciones")
     public ModelAndView showAllPublicaciones(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
 
         if (user != null) {
-            //Solicitud para obtener toda la lista de publicacion de un usuario
+            // Solicitud para obtener toda la lista de publicacion de un usuario
             String urlGetPublicaciones = ("http://localhost:8050/api/publicacion/" + user.getDniUsuario()).trim();
-            List<Publicacion> listaPublicacionUsuario = (List<Publicacion>) servicioWeb.methoGet(urlGetPublicaciones, new ArrayList<Publicacion>());
+            List<Publicacion> listaPublicacionUsuario = (List<Publicacion>) servicioWeb.methoGet(urlGetPublicaciones,
+                    new ArrayList<Publicacion>());
             return new ModelAndView("views/misPublicaciones")
                     .addObject("credencial", credenciales)
                     .addObject("usuario", new Usuario())
@@ -190,7 +185,7 @@ public class UsuarioController {
                 .addObject("usuario", user);
     }
 
-    //MOSTRAR CONTACTOS
+    // MOSTRAR CONTACTOS
     @GetMapping("/contactos")
     public ModelAndView showContactos(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");

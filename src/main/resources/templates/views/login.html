@@ -1,27 +1,22 @@
-
 <head th:replace="head :: head"></head>
 
 <!-- NAVBAR -->
 <div th:include="navbar :: navbar"></div>
 
-<style>
-    form .invalid-feedback{
-        display: block;
-    }
-</style>
 <!-- CONTAINER LOGIN -->
+
 <div class="container_login">
+    <div th:if="${noExisteUsuario == true}" class="usuaroNoExiste">
+        El usuario no existe!
+    </div>
     <div class="login">
         <div class="title_login">
-            <h1>Incia sesión en tu casaFacil account</h1>
-        </div>
-        <div th:if="${noExisteUsuario == true}" class="alert alert-danger" role="alert" th:text="${error}">
-            El usuario no existe o hubo un error en cualquiera de campos
+            <p>Incia sesión</p>
         </div>
         <form action="" th:object="${credenciales}" method="post" id="form_login" enctype="multipart/form-data">
             <div class="row-input">
-                <label>Ingrese correo</label> 
-                <input type="email" placeholder="example@mail.com" th:field="*{correo}" name="correo"/>
+                <label>Ingrese correo</label>
+                <input type="email" placeholder="example@mail.com" th:field="*{correo}" name="correo" />
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">
 
                 </div>
@@ -34,11 +29,11 @@
                 </div>
             </div>
             <div class="row-button">
-                <input type="submit" value="Iniciar sesión" />
+                <input type="submit" value="Iniciar sesión" id="buttonLogin" />
             </div>
         </form>
         <div style="width: 50%; padding: 0 10px;">
-            <a href="/customer/account/registrar">Crear cuenta</a>
+            <a href="/registrar">Crear cuenta</a>
         </div>
     </div>
 </div>
