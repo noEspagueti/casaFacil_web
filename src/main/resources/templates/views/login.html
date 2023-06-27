@@ -6,7 +6,7 @@
 <!-- CONTAINER LOGIN -->
 
 <div class="container_login">
-    <div th:if="${noExisteUsuario == true}" class="usuaroNoExiste">
+    <div th:if="${noExisteUsuario == true}" class="usuarioNoExiste">
         El usuario no existe!
     </div>
     <div class="login">
@@ -15,14 +15,14 @@
         </div>
         <form action="" th:object="${credenciales}" method="post" id="form_login" enctype="multipart/form-data">
             <div class="row-input">
-                <label>Ingrese correo</label>
+                <label>Correo electrónico</label>
                 <input type="email" placeholder="example@mail.com" th:field="*{correo}" name="correo" />
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">
 
                 </div>
             </div>
             <div class="row-input">
-                <label>Ingrese Contraseña</label> 
+                <label>Contraseña</label> 
                 <input type="Password"  name="clave" th:field="*{clave}" placeholder="Ingrese clave" />
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}">
 
@@ -38,7 +38,9 @@
         </div>
     </div>
 </div>
-
+  <script type="module" src="/js/index.js"></script>
+</body>
+</html>
 
 <!-- FOOTER -->
-<div th:include="footer :: footer"></div>
+<!-- <div th:include="footer :: footer"></div> -->

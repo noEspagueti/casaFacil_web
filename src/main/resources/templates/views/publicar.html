@@ -2,114 +2,93 @@
 
 <!-- NAVBAR -->
 <div th:include="navbar :: navbar"></div>
-<style>
-    form .invalid-feedback{
-        display: block;
-    }
-</style>
 
 <div class="containerPublicar">
     <div class="container_Publicacion">
-        <h1 class="form-title">Publique su inmueble</h1>
-        <form action="" method="post" th:object="${publicacion}" enctype="multipart/form-data"> 
-            <div class="mb-3 row">
-                <label for="titulo" class="col-sm-3 col-form-label">Título:</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="titulo" placeholder="Titulo de la publicación" th:field="*{titulo}" name="titulo">
-                </div>
+        <form method="post" th:object="${publicacion}" enctype="multipart/form-data">
+
+            <div class="col_publicar_titulo">
+                <p for="titulo">Título</p>
+                <input type="text" id="titulo" placeholder="Titulo de la publicación" th:field="*{titulo}"
+                    name="titulo">
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}">
-
                 </div>
             </div>
 
-            <div class="mb-3 row">
-                <label for="descripcion" class="col-sm-3 col-form-label">Descripción:</label>
-                <div class="col-sm-9">
-                    <textarea class="form-control" id="descripcion" rows="3"
-                              placeholder="Ingrese la descripción" th:field="*{contenido}" name="contenido"></textarea>
+            <!-- ROW 1 -->
+            <div class="row_publicar">
+              <div class="col_publicar">
+                  <p for="titulo">Ciudad</p>
+                      <input type="text"  id="ciudad" placeholder="Ingrese ciudad"
+                          th:field="*{ciudad}" name="ciudad" />
+                  <div class="invalid-feedback" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
                 </div>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('contenido')}" th:errors="*{contenido}">
-
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="titulo" class="col-sm-3 col-form-label">Ciudad: </label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ciudad" placeholder="Ingrese ciudad" th:field="*{ciudad}" name="ciudad">
-                </div>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}">
-
+             <div class="col_publicar">
+                 <p for="titulo">Distrito</p>
+                 <input type="text" id="ciudad" placeholder="Ingrese distrito" th:field="*{distrito}" name="distrito"/>
+                 <div class="invalid-feedback" th:if="${#fields.hasErrors('distrito')}" th:errors="*{distrito}">     </div>
                 </div>
             </div>
-            <div class="mb-3 row">
-                <label for="titulo" class="col-sm-3 col-form-label">Distrito: </label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="distrito" placeholder="Ingrese distrito" th:field="*{distrito}" name="distrito">
-                </div>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('distrito')}" th:errors="*{distrito}">
 
+
+
+
+            <!-- ROW 2 -->
+             <div class="row_publicar">
+                <div class="col_publicar">
+                       <p>Tipo de propiedad</p>
+                       <select th:field="*{tipoInmueble}" name="tipoInmueble">
+                           <option th:value="null" selected>Selecciona un inmueble</option>
+                           <option value="Departamento">Departamento</option>
+                           <option value="Casa">Casa</option>
+                           <option value="Terreno">Terreno</option>
+                           <option value="Oficina">Oficina</option>
+                       </select>
+                       <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoInmueble')}" th:errors="*{tipoInmueble}"></div>
+                </div>
+                 <div class="col_publicar">
+                     <p>Tipo de publicación</p>
+                         <select th:field="*{tipoPublicacion}"
+                             name="tipoPublicacion">
+                             <option th:value="null" selected>Selecciona una opción</option>
+                             <option value="Alquiler">Alquiler</option>
+                             <option value="Venta">Venta</option>
+                         </select>
+                     <div class="invalid-feedback"
+                         th:if="${#fields.hasErrors('tipoPublicacion')}" th:errors="*{tipoPublicacion}"> </div>
+                 </div>
+            </div>
+
+
+             <div class="row_publicar">
+                <div class="col_publicar">
+                    <p for="precio">Precio</p>
+                    <input type="number" id="precio" placeholder="Ingrese el precio" th:field="*{precio}" name="precio">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">
+                        </div>
                 </div>
             </div>
-            <div class="mb-3 row">
-                <label for="precio" class="col-sm-3 col-form-label">Precio:</label>
-                <div class="col-sm-9">
-                    <div class="input-group">
-                        <span class="input-group-prepend">
-                            <span class="input-group-text">$</span>
-                        </span>
-                        <input type="number" class="form-control" id="precio" placeholder="Ingrese el precio" th:field="*{precio}" name="precio">
+
+            <div class="row_mensaje">
+                    <p>Descripción</p>
+                        <textarea id="descripcion" rows="3" placeholder="Ingrese la descripción"
+                            th:field="*{contenido}" name="contenido" ></textarea>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('contenido')}" th:errors="*{contenido}">
                     </div>
+            </div>
+            
+            <div class="row_upload">
+                <div class="area">
+                    <input type="file" id="upload" th:field="*{imagenPublicacion}" name="imagenPublicacion" />
                 </div>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">
-
+                <p class="nombre_imagen"></p>
+                 <div class="invalid-feedback" th:if="${#fields.hasErrors('imagenPublicacion')}" th:errors="*{imagenPublicacion}">
                 </div>
             </div>
 
-            <div class="mb-3 row">
-                <label for="exampleDropdown" class="col-sm-3 col-form-label">Tipo de propiedad:</label>
-                <div class="col-sm-9">
-                    <select class="form-select" id="exampleDropdown" th:field="*{tipoInmueble}" name="tipoInmueble">
-                        <option value="null"selected>Selecciona una opción</option>
-                        <option value="Departamento">Departamento</option>
-                        <option value="Casa">Casa</option>
-                        <option value="Terreno">Terreno</option>
-                        <option value="Oficina">Oficina</option>
-                    </select>
-                </div>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoInmueble')}" th:errors="*{tipoInmueble}">
-
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="exampleDropdown" class="col-sm-3 col-form-label">Tipo de publicación</label>
-                <div class="col-sm-9">
-                    <select class="form-select" id="exampleDropdown" th:field="*{tipoPublicacion}" name="tipoPublicacion">
-                        <option value="null" selected>Selecciona una opción</option>
-                        <option value="Alquiler">Alquiler</option>
-                        <option value="Venta">Venta</option>
-                    </select>
-                </div>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoPublicacion')}" th:errors="*{tipoPublicacion}">
-
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="archivo" class="col-sm-3 col-form-label">Archivo:</label>
-                <div class="col-sm-9">
-                    <div class="file-input-wrapper">
-                        <input type="file" id="archivo" th:field="*{imagenPublicacion}" name="imagenPublicacion">
-                        <label class="file-input-label" th:text="${rutaImg?:'Seleccionar archivo'}">Seleccionar archivo...</label>
-                    </div>
-                </div>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('imagenPublicacion')}" th:errors="*{imagenPublicacion}">
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <div class="col-sm-9 offset-sm-3">
-                    <button type="submit" class="btn btn-primary">Publicar inmueble</button>
-                    <button type="Reset" class="btn btn-danger">Borrar todo</button>
-                </div>
+            <div class="row_button">
+                <input type="submit" class="btn_publicar" value="Publicar" id="publicaPost" />
+                <input type="Reset" class="btn_cancelar" value="Cancelar" />
             </div>
         </form>
     </div>

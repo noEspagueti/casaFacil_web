@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 public class Credenciales {
     private Long idCredenciales;
-    @NotBlank(message = "El campo correro es requerido")
+    @NotBlank(message = "El correro es requerido*")
     @Email
     private String correo;
-    @NotBlank(message = "El campo clave es requerido")
+    @NotBlank(message = "El clave es requerida*")
     private String clave;
 
 }

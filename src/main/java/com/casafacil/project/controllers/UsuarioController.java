@@ -33,8 +33,9 @@ public class UsuarioController {
     public ModelAndView home(HttpSession session) {
         Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
+        String urlListaCiudades = "http://localhost:8050/api/publicacion/allCiudad";
         List<String> listaCiudades = (List<String>) servicioWeb
-                .methoGet("http://localhost:8050/api/publicacion/allCiudad", new ArrayList<String>());
+                .methoGet(urlListaCiudades, new ArrayList<String>());
         return new ModelAndView("index.html")
                 .addObject("credencial", credenciales)
                 .addObject("usuario", user)
@@ -139,9 +140,6 @@ public class UsuarioController {
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
 
         if (bindingResult.hasErrors() || p.getImagenPublicacion().isEmpty()) {
-            if (p.getImagenPublicacion().isEmpty()) {
-                bindingResult.rejectValue("imagenPublicacion", "MultipartNotEmpty");
-            }
             return new ModelAndView("views/publicar")
                     .addObject("titulo", "Publicar Inmueble")
                     .addObject("publicacion", p)
@@ -177,16 +175,6 @@ public class UsuarioController {
                     .addObject("publicacionUsuario", listaPublicacionUsuario);
         }
         return new ModelAndView("views/misPublicaciones")
-                .addObject("credencial", credenciales)
-                .addObject("usuario", user);
-    }
-
-    // MOSTRAR CONTACTOS
-    @GetMapping("/contactos")
-    public ModelAndView showContactos(HttpSession session) {
-        Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
-        Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-        return new ModelAndView("views/misContactos")
                 .addObject("credencial", credenciales)
                 .addObject("usuario", user);
     }

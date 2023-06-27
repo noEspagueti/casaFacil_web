@@ -36,34 +36,49 @@
 <div class="modal_contactar">
     <div class="form_content">
         <div class="row_content">
-            <div class="row_form">
-                <div class="col1">
-                    <p>Nombre completo:</p>
+            <h5 th:text="${'Contáctate con ' + post.usuario.nombre + ' por el inmueble en ' + post.distrito }">
+                Contáctate
+                con </h5>
+            <div class="column_1">
+                <div class="row_form">
+                    <div class="col1">
+                        <p>Nombre completo</p>
+                    </div>
+                    <div class="col2">
+                        <p th:text="${usuario.nombre + ' ' + usuario.apellido}"></p>
+                    </div>
                 </div>
-                <div class="col2">
-                    <p th:text="${usuario.nombre + ' ' + usuario.apellido}"></p>
+                <div class="row_form">
+                    <div class="col1">
+                        <p>Correo</p>
+                    </div>
+                    <div class="col2">
+                        <p th:text="${usuario.credenciales.correo}"></p>
+                    </div>
                 </div>
             </div>
-            <div class="row_form">
-                <div class="col1">
-                    <p>Correo:</p>
+            <div class="column_1">
+                <div class="row_form">
+                    <div class="col1">
+                        <p>Telefono</p>
+                    </div>
+                    <div class="col2">
+                        <p th:text="${usuario.celular}"></p>
+                    </div>
                 </div>
-                <div class="col2">
-                    <p th:text="${usuario.credenciales.correo}"></p>
-                </div>
-            </div>
-            <div class="row_form">
-                <div class="col1">
-                    <p>Telefono:</p>
-                </div>
-                <div class="col2">
-                    <p th:text="${usuario.celular}"></p>
+                <div class="row_form">
+                    <div class="col1">
+                        <p>DNI</p>
+                    </div>
+                    <div class="col2">
+                        <p th:text="${usuario.dniUsuario}"></p>
+                    </div>
                 </div>
             </div>
         </div>
         <form class="form_contacto" method="post" th:object="${contactos}" enctype="multipart/form-data">
-            <textarea name="mensaje" cols="30" rows="10" th:field="*{mensaje}" placeholder="Breve mensaje"
-                class="mensajeContaco"></textarea>
+            <textarea name="mensaje" cols="30" rows="10" th:field="*{mensaje}" inputmode="text"></textarea>
+
             <div class="button_group">
                 <input type="submit" value="enviar" id="buttonContactar">
                 <input type="button" value="cancelar" id="buttonCancelar">
@@ -71,16 +86,6 @@
         </form>
     </div>
 </div>
-
-<script>
-    const formContacto = document.querySelector('.form_contacto');
-    const textArea = document.querySelector('.mensajeContaco');
-    formContacto.addEventListener('submit', (event) => {
-        if (textArea.textContent === null || textArea.textContent === '') {
-            return;
-        }
-    });
-</script>
 
 
 <!-- FOOTER -->

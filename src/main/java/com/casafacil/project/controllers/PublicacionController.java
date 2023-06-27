@@ -53,7 +53,7 @@ public class PublicacionController {
     @PostMapping("/{idPublicacion}")
     public ModelAndView saveContacto(Contactos c, HttpSession session, @PathVariable("idPublicacion") Long id) {
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-        if (user != null || id != null) {
+        if (user != null || id != null || c != null) {
             Usuario usuarioContacto = (Usuario) session.getAttribute("contacto");
             Contactos contacto = c;
             contacto.setDniContacto(user.getDniUsuario());

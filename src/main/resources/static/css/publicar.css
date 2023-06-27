@@ -1,0 +1,210 @@
+:root {
+    --url-upload: url("../public/upload.png");
+    --border-inputs: #212F3C;
+    --color-font: #212F3C;
+    --color-placeholder: #212F3C;
+    --back-color-select: #f4f7f8;
+    --back-color-select-font: #212F3C;
+}
+
+[theme="dark"] {
+    --url-upload: url("../public/upload_blanck.png");
+    --border-inputs: #9bc6ff;
+    --color-font: #eff3f8;
+    --color-placeholder: #c0dbff;
+    --back-color-select: #08151f;
+    --back-color-select-font: #c0dbff;
+}
+
+
+.containerPublicar {
+    margin: auto;
+    width: 60em;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    color: var(--color-font);
+}
+
+.container_Publicacion {
+    width: 100%;
+}
+
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin: 50px;
+}
+
+.row_publicar {
+    padding: 10px;
+    display: flex;
+}
+
+
+.row_mensaje {
+    width: 100%;
+    padding: 20px;
+}
+
+.col_publicar {
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+}
+
+label {
+    width: 100%;
+    padding: 0 0 10px 0;
+}
+
+.col_publicar_titulo {
+    width: 100%;
+    padding: 20px;
+}
+
+input,
+select {
+    width: 100%;
+}
+
+
+textarea {
+    width: 100%;
+    resize: none;
+    padding: 10px;
+}
+
+.row_button {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+
+.row_upload {
+    padding: 20px;
+}
+
+.area {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    border: 3px dashed var(--border-inputs);
+    background-image: var(--url-upload);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.upload {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgb(22, 255, 115);
+    background-image: var(--url-upload);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+.nombre_imagen {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.area input,
+.upload input {
+    width: 100%;
+    height: 100%;
+    /* margin-left: -300%; */
+    opacity: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.area input:focus {
+    outline: none;
+}
+
+
+
+/* ESTILOS INPUTS */
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+textarea::placeholder {
+    color: var(--color-placeholder);
+    background: none;
+}
+
+
+
+input[type="text"],
+input[type="number"],
+textarea {
+    color: var(--color-font);
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--border-inputs);
+    background: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.btn_publicar,
+.btn_cancelar {
+    width: 20%;
+    padding: 15px 0;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    transition: all 0.3s ease-out;
+}
+
+.btn_publicar {
+    color: #08151f;
+    background: rgb(22, 255, 115);
+}
+
+.btn_cancelar {
+    color: #f8fcff;
+    background: #f94910;
+}
+
+.btn_publicar:hover {
+    background: rgb(192, 255, 217);
+}
+
+.btn_cancelar:hover {
+    background: #ff906b;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    color: var(--back-color-select-font);
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--border-inputs);
+    background: var(--back-color-select);
+    font-weight: 700;
+}

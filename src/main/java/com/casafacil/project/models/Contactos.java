@@ -13,7 +13,7 @@ public class Contactos {
     private String correo;
     private String celular;
     @NotBlank
-    private String mensaje;
+    private String mensaje = "Hola! Estoy interesado en contactarme sobre el inmueble que encontré en casaFacil :).";
     private Date fecha;
     private Usuario usuario;
 }

@@ -5,13 +5,15 @@ export function elementUI(theme) {
         imgIntroduccion.src = (theme === "light") ? "/public/home.png" : "/public/darkhome.png";
     }
     document.getElementById("logo").src = (theme === "light") ? "/public/logoweb-01.png" : "/public/logo.png";
-    document.getElementById("logoFooter").src = (theme === "light") ? "/public/logoweb-01.png" : "/public/logo.png";
+    if (document.getElementById("logoFooter")) {
+        document.getElementById("logoFooter").src = (theme === "light") ? "/public/logoweb-01.png" : "/public/logo.png";
+    }
     const iconTheme = (theme === "light") ? "dark_mode" : "light_mode";
     document.getElementById("switch_theme").innerHTML = `<span class="material-symbols-outlined">${iconTheme}</span>`;
 }
 
 
-    
+
 export function changeTheme(element) {
     let classTheme = element.classList[0];
     if (classTheme === "light") {
