@@ -25,15 +25,13 @@ public class ContactosController {
     // MOSTRAR CONTACTOS
     @GetMapping
     public ModelAndView showCntactos(HttpSession session) {
-        Credenciales credenciales = (Credenciales) session.getAttribute("credencialUser");
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
         String url = "http://localhost:8050/api/contactos/" + user.getDniUsuario();
         List<Contactos> listaContactos = (List<Contactos>) webService.methoGet(url, new ArrayList<Contactos>());
-        return new ModelAndView("views/misContactos")
-                .addObject("credencial", credenciales)
+        return new ModelAndView("views/user/master")
                 .addObject("usuario", user)
                 .addObject("misContactos", listaContactos)
-                .addObject("titulo", "Mis contactos");
+                .addObject("titulo", "yo");
     }
 
 }

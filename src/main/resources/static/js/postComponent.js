@@ -1,7 +1,7 @@
 //SELECTORES CIUDAD / DISTRITOS
 let selectorCiudad = document.getElementById("comboCiudad");
 
-async function getFetch(url) {
+export async function getFetch(url) {
     let options = {
         method: "GET",
         headers: {

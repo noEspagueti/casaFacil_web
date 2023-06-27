@@ -1,0 +1,163 @@
+/* MENU */
+
+.contenedor_user {
+    margin-bottom: 80px;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    padding: 20px;
+    gap: 20px;
+}
+
+.menu_aside {
+    width: 40em;
+    height: 20em;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f8f9fa;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu_aside ul {
+    width: 100%;
+    list-style: none;
+    list-style-position: initial;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    border: none;
+    padding: 10px 0;
+    gap: 10px;
+}
+
+.menu_aside ul>li {
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.menu_aside ul li a {
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #202020;
+}
+
+.menu_aside ul li a:hover {
+    transition: all 0.1s ease-out;
+    border: 1px solid #7c7c7c;
+}
+
+.select {
+    background: #ff7171;
+    color: #fff !important;
+    font-weight: 700;
+}
+
+
+.update_content {
+    width: 90em;
+    height: 100%;
+}
+
+
+
+
+
+
+/*Mis publicaciones*/
+.container-head {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.container-head-Title {
+    width: max-content;
+}
+
+.container-head-description {
+    width: max-content;
+}
+
+.container-head-description>p {
+    font-family: 'Arimo', sans-serif;
+    font-size: 1.2rem;
+}
+
+.container-head-Title>h1 {
+    font-family: 'Arimo', sans-serif;
+    font-weight: 700;
+}
+
+
+.mi_publicacion_container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mi_post_container {
+    display: flex;
+    overflow: hidden;
+    text-align: start;
+    width: 100%;
+    height: 10em;
+    outline: none;
+    border: none;
+    padding: 0;
+    border-radius: 10px;
+    background: red;
+}
+
+
+
+.mi_img_container {
+    width: 25%;
+    height: 100%;
+    background: blue;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.mi_img_container img {
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+
+.mi_description-container {
+    width: 55%;
+    height: 100%;
+    background: yellow;
+}
+
+.mis_etiquetas {
+    width: 20%;
+    height: 100%;
+    background: green;
+}
+
+

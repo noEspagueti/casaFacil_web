@@ -49,28 +49,30 @@
 
                 </div>
                 <div class="sesion_container">
-                    <a th:if="${titulo != 'Registrar usuario' && titulo != 'Iniciar sesión' && credencial==null}" href="/login">Iniciar sesión</a>
-                    <a th:if="${titulo != 'Registrar usuario'  && titulo != 'Iniciar sesión' && credencial==null}" href="/registrar">Crear cuenta</a>
+                    <a th:if="${titulo != 'Registrar usuario' && titulo != 'Iniciar sesión' && usuario==null}"
+                        href="/login">Iniciar sesión</a>
+                    <a th:if="${titulo != 'Registrar usuario'  && titulo != 'Iniciar sesión' && usuario==null}"
+                        href="/registrar">Crear cuenta</a>
                 </div>
-                <div  th:if="${credencial != null && titulo != 'Publicar Inmueble'}">
+                <div th:if="${usuario != null && titulo != 'Publicar Inmueble'}">
                     <a class="callToActionPublicar fw-bold" href="/publicar">Publicar</a>
                 </div>
-                <div  class="profile" th:if="${credencial != null}">         
+                <div class="profile" th:if="${usuario != null}">
                     <div class="icon-profile">
                         <i class="bi bi-person-circle" style="font-size: 2.2em; color: #BFD7DA;"></i>
                     </div>
                     <div class="profile-contain">
                         <div class="profile-user">
                             <label class="fw-bold">Usuario</label>                               
-                            <p th:text="${credencial.correo}" class="m-0">usuario</p>
-                            <p th:text="${usuario.dniUsuario}" class="fw-light">dniUsuario</p>
+                            <p th:text="${usuario.nombre}" class="m-0">usuario</p>
+                            <p th:text="${usuario.dniUsuario}" class="fw-light dniUsuario">dniUsuario</p>
                         </div>
                         <div class="profile-body">
                             <div class="row-favoritos">
                                 <a href="">Mis favoritos</a>                 
                             </div>
                             <div class="row-publicaciones">
-                                <a href="/mispublicaciones">Mis publicaciones</a>
+                                <a href="/publicaciones">Mis publicaciones</a>
                             </div>
                             <div class="row-contactos">
                                 <a href="/contactos">Mis contactos</a>                 
