@@ -34,5 +34,4 @@ public class webServiceImpl<T> implements webService<T> {
         return entity.getBody();
     }
 
-
 }

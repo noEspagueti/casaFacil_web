@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.casafacil.project.models.Contactos;
-import com.casafacil.project.models.Credenciales;
 import com.casafacil.project.models.Usuario;
 import com.casafacil.project.services.webServiceImpl;
 import jakarta.servlet.http.HttpSession;
@@ -24,13 +23,10 @@ public class ContactosController {
 
     // MOSTRAR CONTACTOS
     @GetMapping
-    public ModelAndView showCntactos(HttpSession session) {
+    public ModelAndView showAllContactos(HttpSession session) {
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-        String url = "http://localhost:8050/api/contactos/" + user.getDniUsuario();
-        List<Contactos> listaContactos = (List<Contactos>) webService.methoGet(url, new ArrayList<Contactos>());
         return new ModelAndView("views/user/master")
                 .addObject("usuario", user)
-                .addObject("misContactos", listaContactos)
                 .addObject("titulo", "yo");
     }
 

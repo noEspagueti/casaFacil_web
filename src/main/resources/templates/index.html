@@ -9,13 +9,16 @@
     <div class="introduccion">
         <div class="introduccion_content">
             <div class="titulo_introduccion">
-                <p class="pause element">Descubre el hogar de tus sueños &#128205;</p>
+                <p class="pause element">Descubre el hogar de tus sueños</p>
             </div>
             <div class="description_introduccion">
                 <p class="pause">
                     Expertos en bienes raíces, variedad de opciones y el mejor servicio para encontrar la propiedad perfecta para ti.
                 </p>
             </div>    
+            <div class="callToAction">
+                <a href="#container_introduccion">Descubre más</a>
+            </div>
         </div>
         <div class="img_container_introduccion" >
             <img  id="imgIntroduccion"/>
@@ -25,7 +28,8 @@
 
 
 <!-- PRINCIPAL -->
-<div th:include="principal :: principal"></div>
+<div th:include="principal :: principal" class="container_introduccion" style="width: 100;" id="container_introduccion">
+</div>
 
 
 <!--Selectores para el filtro de ciudad y distrito -->

@@ -70,6 +70,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let theme = localStorage.getItem('tema') ? localStorage.getItem('tema') : themeSwitch.classList[0];
         onEventClik(themeSwitch, () => changeTheme(themeSwitch));
         document.documentElement.setAttribute('theme', theme);
+        
         elementUI(theme);
 
         if (selectorCiudad) {
@@ -90,6 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.startViewTransition(() => {
         updateTheDOMSomeHow();
     });
+
 });
 
 

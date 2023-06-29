@@ -1,7 +1,7 @@
 //SELECTORES CIUDAD / DISTRITOS
 let selectorCiudad = document.getElementById("comboCiudad");
 
-export async function getFetch(url) {
+async function getFetch(url) {
     let options = {
         method: "GET",
         headers: {
@@ -20,7 +20,7 @@ const postComponent = (publicacion) => {
     ancord.href = `/post/${publicacion.idPublicacion}`;
 
     //contenedores principales
-    const contenedoresPrincipales = ["img_container", "description-container", "etiquetas"];
+    const contenedoresPrincipales = ["img_container", "description-container"];
     contenedoresPrincipales.forEach(newContent => {
         let content = document.createElement("DIV");
         content.classList.add(newContent);
@@ -31,31 +31,32 @@ const postComponent = (publicacion) => {
             content.appendChild(imgPost);
         }
         if (newContent === "description-container") {
-            const contenido = ["titulo_description", "detalles_container"];
+            const contenido = ["precio", "titulo_description", "detalles_container", "action"];
             contenido.map(item => {
                 let contenidoBody = document.createElement("DIV");
                 contenidoBody.classList.add(item);
                 content.appendChild(contenidoBody);
+                if (item === "precio") {
+                    let precio = document.createElement("p");
+                    precio.textContent = `S/. ${new Intl.NumberFormat('en-US', { style: 'decimal' }).format(publicacion.precio)}`;
+                    contenidoBody.appendChild(precio);
+                }
                 if (item === "titulo_description") {
-                    let titulo = document.createElement("h1");
-                    titulo.textContent = publicacion.titulo;
+                    let titulo = document.createElement("p");
+                    titulo.textContent = (publicacion.titulo).toUpperCase();
                     contenidoBody.appendChild(titulo);
                 }
                 if (item === "detalles_container") {
                     let ubicacion = document.createElement("p");
-                    ubicacion.textContent = `${publicacion.ciudad} - ${publicacion.distrito.toLowerCase()}`;
-                    let precio = document.createElement("p");
-                    precio.textContent = `S/. ${new Intl.NumberFormat('en-US', {style: 'decimal'}).format(publicacion.precio)}`;
-                    contenidoBody.append(ubicacion, precio);
+                    ubicacion.textContent = `${publicacion.ciudad}`;
+                    contenidoBody.append(ubicacion);
+                }
+                if (item === "action") {
+                    let like = document.createElement("button");
+                    like.innerHTML = '<span class="material-symbols-outlined">favorite</span >';
+                    contenidoBody.append(like);
                 }
             });
-        }
-        if (newContent === "etiquetas") {
-            let tipoPublicacion = document.createElement("span");
-            tipoPublicacion.textContent = `${publicacion.tipoPublicacion}`;
-            let tipoInmueble = document.createElement("span");
-            tipoInmueble.textContent = `${publicacion.tipoInmueble}`;
-            content.append(tipoPublicacion, tipoInmueble);
         }
     });
     publicacionContainer.append(ancord);

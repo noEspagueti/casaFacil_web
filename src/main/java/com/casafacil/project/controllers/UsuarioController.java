@@ -33,17 +33,21 @@ public class UsuarioController {
     public ModelAndView home(HttpSession session) {
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
         String urlListaCiudades = "http://localhost:8050/api/publicacion/allCiudad";
+
         List<String> listaCiudades = (List<String>) servicioWeb
                 .methoGet(urlListaCiudades, new ArrayList<String>());
+
         return new ModelAndView("index.html")
                 .addObject("usuario", user)
+                .addObject("galeria", new Galeria())
                 .addObject("ciudades", listaCiudades);
     }
 
     @GetMapping("/login")
     public ModelAndView mostrarLoginUsuario() {
-        return new ModelAndView("./views/login.html").addObject("titulo", "Iniciar sesión").addObject("credenciales",
-                new Credenciales());
+        return new ModelAndView("./views/login.html")
+                .addObject("titulo", "Iniciar sesión")
+                .addObject("credenciales", new Credenciales());
     }
 
     // LOGIN
@@ -64,14 +68,17 @@ public class UsuarioController {
                     .addObject("noExisteUsuario", true);
         } else {
             Credenciales credencial = usuarioCredencial.getCredenciales();
-            if (c.getClave().equals(credencial.getClave())) {
-                session.setAttribute("usuarioLogueado", usuarioCredencial);
-                return new ModelAndView("redirect:/home")
+            if (!c.getClave().equals(credencial.getClave())) {
+                return new ModelAndView("./views/login")
                         .addObject("titulo", "Iniciar sesión")
-                        .addObject("usuario", session.getAttribute("usuarioLogueado"));
+                        .addObject("credenciales", new Credenciales())
+                        .addObject("noExisteUsuario", true);
             }
+            session.setAttribute("usuarioLogueado", usuarioCredencial);
+            return new ModelAndView("redirect:/home")
+                    .addObject("titulo", "Iniciar sesión")
+                    .addObject("usuario", session.getAttribute("usuarioLogueado"));
         }
-        return new ModelAndView("./views/login").addObject("titulo", "Iniciar sesión").addObject("credenciales", c);
     }
 
     // REGISTRAR
@@ -107,7 +114,7 @@ public class UsuarioController {
     @GetMapping
     public ModelAndView logout(HttpSession session) {
         session.invalidate();
-        return new ModelAndView("redirect:/")
+        return new ModelAndView("redirect:/home")
                 .addObject("usuario", null);
     }
 
@@ -159,23 +166,6 @@ public class UsuarioController {
                     .addObject("titulo", "yo")
                     .addObject("usuario", user);
 
-        } else {
-            return null;
-        }
-    }
-
-    // MOSTRAR TODOS LAS PUBLICACIONES DEL USUARIO
-    @GetMapping("/me/publicaciones")
-    public ModelAndView showAllPublicacionesApi(HttpSession session) {
-        Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
-        if (user != null) {
-            String urlGetPublicaciones = ("http://localhost:8050/api/publicacion/" + user.getDniUsuario()).trim();
-            List<Publicacion> listaPublicacionUsuario = (List<Publicacion>) servicioWeb.methoGet(urlGetPublicaciones,
-                    new ArrayList<Publicacion>());
-            return new ModelAndView("views/misPublicaciones")
-                    .addObject("titulo", "yo")
-                    .addObject("usuario", user)
-                    .addObject("publicacionUsuario", listaPublicacionUsuario);
         } else {
             return null;
         }

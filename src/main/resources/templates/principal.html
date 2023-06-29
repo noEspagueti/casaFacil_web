@@ -1,33 +1,29 @@
-
-
 <th:block th:fragment="principal">
 
-    <div class="container_introduccion" style="width: 100;">
-        <div class="principalContainer">
-            <div class="principal">
-                <div class="titulo_contain">
-                    <h1 class="principalTittle">¡Encuentra tu lugar de ensueño!</h1>
-                </div>
-                <div class="form_container">
-                    <div class="containerNav">
-                        <button class="buttonNav">Alquilar</button>
-                        <button class="buttonNav">Comprar</button>
-                        <button class="buttonNav">Proyectos</button>
-                    </div>
-                    <div class="inputContainer">
-                        <form class="formNav" method="post" action="#">
-                            <select name="comboBoxNav" class="comboBoxNav" id="comboBoxNav">
-                                <option value="Departamento" selected>Departamento</option>
-                                <option value="Casa">Casa</option>
-                                <option value="Terreno">Terreno</option>
-                            </select> 
-                            <input type="text" name="inputNav"
-                                   placeholder="Ingresa ubicaciones (eje: Lima)"> <input
-                                   type="submit" value="Buscar" class="buttonSubmit">
-                        </form>
-                    </div>
-                </div>
+
+    <div class="principalContainer">
+        <div class="principal">
+            <div class="titulo_contain">
+                <h1 class="principalTittle">¡Encuentra tu lugar de ensueño!</h1>
+            </div>
+            <div class="inputContainer">
+                <form method="GET" th:object="${galeria}" th:action="@{galeria}">
+                    <select name="publicacion" class="publicacion" id="publicacion" th:field="*{publicacion}">
+                        <option value="alquiler " selected>Alquiler</option>
+                        <option value="venta">Venta</option>
+                    </select>
+                    <select name="inmueble" class="inmueble" id="inmueble" th:field="*{inmueble}">
+                        <option value="Departamento" selected>Departamento</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Terreno">Terreno</option>
+                    </select>
+                    <input type="text" name="detalles" placeholder="Buscar por distrito (eje: Lima)"
+                        th:field="*{detalles}">
+                    <input type="submit" class="buttonSubmit" value="Buscar">
+                </form>
             </div>
         </div>
     </div>
+    </div>
+
 </th:block>

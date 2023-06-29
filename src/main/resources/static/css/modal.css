@@ -36,7 +36,7 @@
     gap: 10px;
 }
 
-.row_content h5{
+.row_content h5 {
     font-weight: 700;
 }
 
@@ -52,7 +52,8 @@
 .col1 {
     font-weight: 500;
 }
-.column_1{
+
+.column_1 {
     width: 100%;
     display: flex;
     margin-bottom: 10px;
