@@ -8,11 +8,10 @@
 }
 
 :root {
-    --color-font: #212F3C;
+    --color-font: #415a79;
     --back-color: #fff;
     --second-back-color-introduccion: #faf9f9;
-    --second-back-color-introduccion-img: radial-gradient(circle, rgba(255, 214, 186, 1) 0%, rgba(255, 177, 124, 1) 100%);
-    ;
+    --second-back-color-introduccion-img: #f3f9fb;
     --button-color: #f94910;
     --button-color-hover: #454545;
     --button-color-hover-font: #fff;
@@ -30,21 +29,12 @@
     --background_post_hover: #212F3C;
     --color-switch-theme: #4d62ff;
     --background-switch-theme: #212F3C;
-    --principal-backColor-container: linear-gradient(45deg,
-            hsl(0deg 0% 100%) 0%,
-            hsl(206deg 41% 99%) 11%,
-            hsl(206deg 41% 99%) 22%,
-            hsl(206deg 41% 98%) 33%,
-            hsl(206deg 41% 97%) 44%,
-            hsl(206deg 41% 96%) 56%,
-            hsl(206deg 41% 96%) 67%,
-            hsl(206deg 41% 95%) 78%,
-            hsl(206deg 41% 94%) 89%,
-            hsl(206deg 41% 93%) 100%);
+    --principal-backColor-container: #F8FAFF;
     --border-inputs: #c3d1d6;
     --back-color-select: #f4f7f8;
     --background-inputContainer: #cbe1ff;
     --description-container: #fff;
+    --color-action: #212F3C;
 }
 
 [theme="dark"] {
@@ -113,6 +103,7 @@
     --back-color-select: #11283a;
     --background-inputContainer: #9bc6ff;
     --description-container: #11283a;
+    --color-action: #9bc6ff;
 }
 
 body {
@@ -132,7 +123,7 @@ p {
     justify-content: center;
     align-items: center;
     box-sizing: content-box;
-    height: 33em;
+    height: 49em;
     /* background: var(--principal-backColor-container); */
 }
 
@@ -152,7 +143,7 @@ p {
 .principalTittle {
     text-align: start;
     font-family: 'Roboto Slab', serif;
-    background: var(--principal-tittle);
+    background: var(--color-font);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #454545;
@@ -289,7 +280,6 @@ select[name="comboCiudad"] {
 
 .publicacion_post_container {
     padding: 20px;
-    height: 40em;
     display: grid;
     gap: 80px;
     grid-template-columns: repeat(3, 20em);
@@ -387,9 +377,9 @@ select[name="comboCiudad"] {
     font-weight: 700;
 }
 
-.action{
+.action {
     display: flex;
-    padding: 10px 50px;
+    padding: 10px 20px;
     justify-content: end;
 }
 
@@ -397,11 +387,13 @@ select[name="comboCiudad"] {
     border: none;
     background: none;
 }
+
 .action button span {
     font-size: 2rem;
+    color: var(--color-action);
 }
 
-.action button::selection{
+.action button::selection {
     background: salmon;
 }
 
@@ -466,9 +458,7 @@ select[name="comboCiudad"] {
 
 /* LOGIN CONTAINER*/
 .invalid-feedback {
-    margin-top: 15px;
     display: block;
-    padding: 10px;
     font-weight: 800;
     color: #ff1616;
     border-radius: 10px;
@@ -596,19 +586,7 @@ input[name="clave"] {
 }
 
 
-/*REGISTRAR*/
-.container_registrar {
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-}
 
-.registrar {
-    width: 50em;
-    padding: 20px;
-    background: #fff;
-    border-radius: 20px;
-}
 
 .form-title {
     margin-bottom: 30px;
@@ -676,24 +654,25 @@ input[name="clave"] {
 
 .introduccion_content {
     width: 70%;
-    height: 100%;
+    height: 73%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
     color: var(--color-font);
-    background: var(--second-back-color-introduccion);
-    border-radius: 40px;
+    border-radius: 40px 0 0 40px;
     overflow: hidden;
     padding: 50px;
     gap: 30px;
+    background-color: var(--second-back-color-introduccion-img);
 }
 
 .description_introduccion {
-    margin-top: 20px;
+    padding: 10px;
     width: 80%;
     font-size: 1.2rem;
+    color: #415a79;
 }
 
 .description_introduccion p {
@@ -701,16 +680,14 @@ input[name="clave"] {
 }
 
 .titulo_introduccion {
-    width: 90%;
-    font-family: 'Roboto Slab', serif;
-    /* font-family: 'Montserrat', sans-serif; */
+    width: 100%;
     color: var(--color-font);
 }
 
 .titulo_introduccion p {
-    font-size: 5rem;
+    font-size: 4rem;
     line-height: 70px !important;
-    font-weight: 800;
+    font-weight: 700;
     opacity: 0;
 }
 
@@ -735,11 +712,11 @@ input[name="clave"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    width: 100%;
-    height: 49em;
+    width: 90%;
+    height: 60em;
     overflow: hidden;
     padding: 0;
+    border-radius: 3rem;
 }
 
 .callToAction {
@@ -759,11 +736,11 @@ input[name="clave"] {
 
 .img_container_introduccion {
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
-    background: var(--second-back-color-introduccion-img);
-    border-radius: 40px;
+    align-items: center;
+    background-color: var(--second-back-color-introduccion-img);
+    border-radius: 0 40px 40px 0;
 }
 
 .img_container_introduccion img {

@@ -1,0 +1,51 @@
+<div th:object="${publicacion}">
+    <div class="row_mensaje">
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                stairs
+            </span>
+            <p>N° de pisos</p>
+        </div>
+        <input type="number" id="numeroPisos" th:field="*{tipoCasa.numeroPisos}" name="numeroPisos">
+
+    </div>
+    <div class="row_mensaje">
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                door_front
+            </span>
+            <p>N° de habitaciones</p>
+        </div>
+        <input type="number" id="numeroHabitaciones" th:field="*{tipoCasa.numeroHabitaciones}"
+            name="numeroHabitaciones">
+    </div>
+    <div class="row_mensaje">
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                shower
+            </span>
+            <p>N° de Baños</p>
+        </div>
+        <input type="number" id="numeroBanio" th:field="*{tipoCasa.numeroBanio}" name="numeroBanio">
+
+    </div>
+    <div class="row_mensaje">
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                aspect_ratio
+            </span>
+            <p>Area construida</p>
+        </div>
+        <input type="number" id="areaConstruida" th:field="*{tipoCasa.areaConstruida}" name="areaConstruida">
+
+    </div>
+    <div class="row_mensaje">
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                straighten
+            </span>
+            <p>Area total</p>
+        </div>
+        <input type="number" id="areaTotal" th:field="*{tipoCasa.areaTotal}" name="areaTotal">
+    </div>
+</div>

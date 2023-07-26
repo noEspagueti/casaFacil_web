@@ -1,89 +1,116 @@
-
 <head th:replace="head :: head"></head>
 
 <!-- NAVBAR -->
 <div th:include="navbar :: navbar"></div>
 
-<style>
-    form .invalid-feedback{
-        display: block;
-    }
-</style>
 
 <!-- CONTAINER LOGIN -->
 <div class="container_registrar">
-    <div class="registrar">
-        <div class="title_login">
-            <h1>Resgistrate y encuentra tu lugar de ensueño</h1>
+    <div class="registrar_general">
+        <div class="img_registrar">
+            <img src="/public/register.png" alt="">
         </div>
-        <form class="row g-3" th:object="${usuario}" method="post" enctype="multipart/form-data">
-            <div class="col-12">
-                <label>Nombre</label>
-                <input type="text" class="form-control" th:field="*{nombre}" name="nombre" placeholder="Ingrese nombre"/>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+        <div class="registrar">
+            <div class="title-register">
+                <p>Ingresa los datos para crear tu perfil.</p>
+            </div>
+            <form class="form_register" th:object="${usuario}" method="post" enctype="multipart/form-data">
 
+            <div class="view">
+                <div class="content">
+                    <div class="element">
+                            <div class="row-register">
+                                <label>Tipo de usuario</label>
+                                <select name="tipoUsuario" th:field="*{tipoUsuario}">
+                                    <option value="Particular">Particular</option>
+                                    <option value="Inmobiliaria">Inmobiliaria</option>
+                                </select>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoUsuario')}" th:errors="*{tipoUsuario}">
+                            </div>
+                        </div>
+                        <div class="row-register">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" th:field="*{nombre}" name="nombre"
+                                placeholder="Ingrese nombre" />
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+                            </div>
+                        </div>
+                        <div class="row-register">
+                            <label>Apellido</label>
+                            <input type="text" name="apellido" class="form-control" th:field="*{apellido}"
+                                placeholder="Ingrese apellido" />
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">
+                            </div>
+                        </div>
+                        <div class="row-register">
+                             <label>Documento de identidad</label>
+                             <input type="text" class="form-control" th:field="*{dniUsuario}" name="dniUsuario"
+                                 placeholder="DNI" />
+                             <div class="invalid-feedback" th:if="${#fields.hasErrors('dniUsuario')}" th:errors="*{dniUsuario}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <div class="row-register">
+                            <label class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="direccion" th:field="*{direccion}"
+                                name="direccion" placeholder="Ingrese dirección" />
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">
+                            </div>
+                        </div>
+                        <div class="row-register">
+                            <label class="form-label">Distrito</label>
+                            <input type="text" class="form-control" name="distrito" th:field="*{distrito}"
+                                placeholder="Ingrese distrito" />
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('distrito')}" th:errors="*{distrito}">
+                            </div>
+                        </div>
+                        <div class="row-register">
+                            <label>Celular</label>
+                            <input type="text" name="celular" class="form-control" th:field="*{celular}"
+                                placeholder="Ingrese celular" />
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <h1>Crea tu cuenta!</h1>
+                        <div class="row-register">
+                               <label class="form-label">Correo:</label>
+                               <input type="email" class="form-control" id="correo" th:field="*{credenciales.correo}"
+                                   name="correo" placeholder="Ingrese correo" />
+                               <div class="invalid-feedback" th:if="${#fields.hasErrors('credenciales.correo')}" th:errors="*{credenciales.correo}">
+                                </div>
+                        </div>
+                        <div class="row-register">
+                              <label class="form-label">Contraseña:</label>
+                              <input type="password" class="form-control" name="clave" th:field="*{credenciales.clave}"
+                                  placeholder="Ingrese clave">
+                              <div class="invalid-feedback" th:if="${#fields.hasErrors('credenciales.clave')}" th:errors="*{credenciales.clave}">
+                            </div>
+                        </div>
+                          <div>
+                              <button type="submit" class="">Registrar</button>
+                              <button type="Reset" class="">Cancelar</button>
+                          </div> 
+                    </div>
                 </div>
             </div>
-            <div class="col-12">
-                <label>Documento de identidad</label>
-                <input type="text" class="form-control" th:field="*{dniUsuario}" name="dniUsuario" placeholder="Ingrese dni Usuario"/>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('dniUsuario')}" th:errors="*{dniUsuario}">
-
-                </div>
-            </div>
-            <div class="col-12">
-                <label>Apellido</label>
-                <input type="text" name="apellido" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido"/>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">
-
-                </div>
-            </div>
-
-            <div class="col-12">
-                <label  class="form-label">Dirección</label>
-                <input type="text" class="form-control" id="direccion" th:field="*{direccion}" name="direccion" placeholder="Ingrese dirección"/>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">
-
-                </div>
-            </div>
-
-            <div class="col-12">
-                <label  class="form-label">Distrito</label>
-                <input type="text" class="form-control" name="distrito" th:field="*{distrito}" placeholder="Ingrese distrito"/>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('distrito')}" th:errors="*{distrito}">
-
-                </div>
-            </div>
-            <div class="col-12">
-                <label>Celular</label>
-                <input type="text" name="celular" class="form-control" th:field="*{celular}" placeholder="Ingrese celular"/>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}">
-
-                </div>
-            </div>
-
-            <div class="col-12">
-                <label  class="form-label">Correo:</label>
-                <input type="email" class="form-control" id="correo" th:field="*{credenciales.correo}" name="correo" placeholder="Ingrese correo" />
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('credenciales.correo')}" th:errors="*{credenciales.correo}">
-
-                </div>
-            </div>
-
-            <div class="col-12">
-                <label  class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" name="clave" th:field="*{credenciales.clave}" placeholder="Ingrese clave">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('credenciales.clave')}" th:errors="*{credenciales.clave}">
-
-                </div>
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Registrar usuario</button>
-                <button type="Reset" class="btn btn-danger">Borrar todo</button>
+            <div class="navigation">
+                <span class="previous material-symbols-outlined">
+                    chevron_left
+                </span>
+               <span class="next material-symbols-outlined">
+                   chevron_right
+               </span>
             </div>
         </form>
     </div>
+   </div>
 </div>
 
-<!-- FOOTER -->
-<div th:include="footer :: footer"></div>
+<script src="/js/register.js"></script>
+<script type="module" src="/js/index.js"></script>
+</body>
+
+</html>

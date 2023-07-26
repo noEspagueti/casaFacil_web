@@ -10,7 +10,7 @@ public class Credenciales {
     @NotBlank(message = "El correro es requerido*")
     @Email
     private String correo;
-    @NotBlank(message = "El clave es requerida*")
+    @NotBlank(message = "La clave es requerida*")
     private String clave;
 
 }

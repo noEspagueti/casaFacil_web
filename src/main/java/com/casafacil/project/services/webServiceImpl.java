@@ -34,4 +34,11 @@ public class webServiceImpl<T> implements webService<T> {
         return entity.getBody();
     }
 
+    @Override
+    public ResponseEntity remmove(String url) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, null, String.class);
+        return response;
+    }
+
 }

@@ -7,13 +7,26 @@
     text-decoration: none;
 }
 
+.container_nav_principal {
+    margin: auto;
+    left: 0;
+    right: 0;
+    width: 63em;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 111111;
+}
 /* NAVBAR*/
 nav {
+    padding: 20px;
     width: 100%;
-    margin: 2em 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.2s ease;
+    box-shadow: 0px 10px 15px -12px rgba(0, 0, 0, 0.1);
 }
 
 .container_nav {
@@ -212,7 +225,7 @@ nav {
 .profile-contain {
     background: #fff;
     width: 15em;
-    height: 17em;
+    height: 15em;
     position: absolute;
     top: 6em;
     display: none;
@@ -236,7 +249,6 @@ nav {
 .profile-user {
     height: 5em;
     margin: 10px;
-    padding: 5px;
     box-sizing: border-box;
     overflow: hidden;
     word-wrap: break-word;

@@ -1,0 +1,83 @@
+<head th:replace="head :: head"></head>
+
+<!-- NAVBAR -->
+<div th:include="navbar :: navbar"></div>
+
+<div class="tipo_publicacion_container">
+    <form method="POST" th:object="${publicacion}" class="form_publicar" enctype="multipart/form-data">
+        <div class="publicacion_container">
+            <div class="seccion_publicacion">
+                <div class="principal_row">
+                    <p>Tipo de propiedad</p>
+                    <select name="tipoInmueble" th:field="*{tipoInmueble}" id="tipoInmueble">
+                        <option value="Departamento">Departamento</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Terreno">Terreno</option>
+                    </select>
+                </div>
+                <div class="principal_row">
+                    <p for="titulo">Título</p>
+                    <input type="text" id="titulo" placeholder="Titulo de la publicación" th:field="*{titulo}"
+                        name="titulo" />
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+                </div>
+                <div class="principal_row">
+                    <p for="precio">Precio</p>
+                    <input type="number" id="precio" placeholder="S/." th:field="*{precio}" name="precio" />
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
+                </div>
+                <div class="principal_row">
+                    <p>Descripción</p>
+                    <textarea id="descripcion" rows="3" placeholder="Ingrese la descripción" th:field="*{contenido}"
+                        name="contenido"></textarea>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('contenido')}" th:errors="*{contenido}">
+                    </div>
+                </div>
+                 <div class="principal_row">
+                     <p for="precio">Dirección</p>
+                     <input type="text" id="direccion" placeholder="Calle xxxxxxx" th:field="*{direccion}" name="direccion" />
+                     <div class="invalid-feedback"
+                         th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
+                </div>
+                <div class="principal_row_2">
+                    <input type="text" id="ciudad" placeholder="Ingrese distrito" th:field="*{distrito}"
+                        name="distrito" />
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('distrito')}" th:errors="*{distrito}">
+                    </div>
+                    <input type="text" id="ciudad" placeholder="Ingrese ciudad" th:field="*{ciudad}" name="ciudad" />
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
+                </div>
+
+                <div class="principal_row">
+                    <p>Tipo de publicación</p>
+                    <select th:field="*{tipoPublicacion}" name="tipoPublicacion">
+                        <option th:value="null" selected>Selecciona una opción</option>
+                        <option value="Alquiler">Alquiler</option>
+                        <option value="Venta">Venta</option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoPublicacion')}"
+                        th:errors="*{tipoPublicacion}"></div>
+                </div>
+            </div>
+
+            <div class="publicacion_content">
+                <div class="update_content"></div>
+            </div>
+        </div>
+        <div class="row_upload">
+            <div class="area">
+                <input type="file" id="upload" th:field="*{imagenPublicacion}" name="imagenPublicacion" />
+            </div>
+            <p class="nombre_imagen"></p>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('imagenPublicacion')}"
+                th:errors="*{imagenPublicacion}"></div>
+        </div>
+        <div class="row_button">
+            <input type="submit" class="btn_publicar" value="Publicar" id="publicaPost" />
+            <input type="Reset" class="btn_cancelar" value="Cancelar" />
+        </div>
+    </form>
+</div>
+
+<!-- FOOTER -->
+<div th:include="footer :: footer"></div>

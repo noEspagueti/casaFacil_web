@@ -31,7 +31,7 @@ const postComponent = (publicacion) => {
             content.appendChild(imgPost);
         }
         if (newContent === "description-container") {
-            const contenido = ["precio", "titulo_description", "detalles_container", "action"];
+            const contenido = ["precio", "titulo_description", "detalles_container"];
             contenido.map(item => {
                 let contenidoBody = document.createElement("DIV");
                 contenidoBody.classList.add(item);
@@ -50,11 +50,6 @@ const postComponent = (publicacion) => {
                     let ubicacion = document.createElement("p");
                     ubicacion.textContent = `${publicacion.ciudad}`;
                     contenidoBody.append(ubicacion);
-                }
-                if (item === "action") {
-                    let like = document.createElement("button");
-                    like.innerHTML = '<span class="material-symbols-outlined">favorite</span >';
-                    contenidoBody.append(like);
                 }
             });
         }

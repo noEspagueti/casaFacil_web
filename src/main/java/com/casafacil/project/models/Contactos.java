@@ -7,13 +7,13 @@ import lombok.Data;
 
 @Data
 public class Contactos {
-    private String dniContacto;
-    private String nombres;
-    private String apellidos;
-    private String correo;
-    private String celular;
+    String dniContacto;
+    String nombres;
+    String apellidos;
+    String correo;
+    String celular;
     @NotBlank
-    private String mensaje = "Hola! Estoy interesado en contactarme sobre el inmueble que encontré en casaFacil :).";
-    private Date fecha;
-    private Usuario usuario;
+    String mensaje = "Hola! Estoy interesado en contactarme sobre el inmueble que encontré en casaFacil :).";
+    Date fecha;
+    Usuario usuario;
 }

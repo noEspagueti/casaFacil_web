@@ -1,14 +1,13 @@
-
 <th:block th:fragment="navbar">
 
     <!-- NAVBAR -->
 
-    <div class="container" style="display:flex;justify-content: center;">
-        <nav>
+    <div class="container_nav_principal">
+        <nav class="nav">
             <div class="container_nav">
                 <div class="logo_container">
                     <a href="/home" class="logo_ancord">
-                        <img id="logo"/>
+                        <img id="logo" />
                     </a>
                 </div>
                 <div class="section_container">
@@ -18,7 +17,7 @@
                             <span class="material-symbols-outlined">
                                 arrow_drop_down
                             </span>
-                        </div>   
+                        </div>
                         <div class="deploy_section_comprar">
                             <div class="deploy_section_container_comprar">
                                 <ul>
@@ -28,10 +27,10 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>                  
+                    </div>
                     <div class="section_alquilar">
                         <div class="section_head">
-                            <button  class="btnAlquilar">Alquilar</button>
+                            <button class="btnAlquilar">Alquilar</button>
                             <span class="material-symbols-outlined">
                                 arrow_drop_down
                             </span>
@@ -48,34 +47,30 @@
                     </div>
 
                 </div>
-                <div class="sesion_container">
-                    <a th:if="${titulo != 'Registrar usuario' && titulo != 'Iniciar sesión' && usuario==null}"
-                        href="/login">Iniciar sesión</a>
-                    <a th:if="${titulo != 'Registrar usuario'  && titulo != 'Iniciar sesión' && usuario==null}"
-                        href="/registrar">Crear cuenta</a>
+                <div class="sesion_container" th:if="${usuario==null || titulo == 'Registrar usuario'}">
+                    <a href="/login">Iniciar sesión</a>
+                    <a href="/registrar">Crear cuenta</a>
                 </div>
-                <div th:if="${usuario != null && titulo != 'Publicar Inmueble'}">
+                <div th:if="${usuario != null &&  titulo != 'Registrar usuario'}">
                     <a class="callToActionPublicar fw-bold" href="/publicar">Publicar</a>
                 </div>
-                <div class="profile" th:if="${usuario != null}">
+                <div class="profile"
+                    th:if="${usuario != null && titulo != 'Registrar usuario'}">
                     <div class="icon-profile">
                         <i class="bi bi-person-circle" style="font-size: 2.2em; color: #BFD7DA;"></i>
                     </div>
                     <div class="profile-contain">
                         <div class="profile-user">
-                            <label class="fw-bold">Usuario</label>                               
+                            <label class="fw-bold">Usuario</label>
                             <p th:text="${usuario.nombre}" class="m-0">usuario</p>
                             <p th:text="${usuario.dniUsuario}" class="fw-light dniUsuario">dniUsuario</p>
                         </div>
                         <div class="profile-body">
-                            <div class="row-favoritos">
-                                <a href="">Mis favoritos</a>                 
-                            </div>
                             <div class="row-publicaciones">
                                 <a href="/publicaciones">Mis publicaciones</a>
                             </div>
                             <div class="row-contactos">
-                                <a href="/contactos">Mis contactos</a>                 
+                                <a href="/contactos">Mis contactos</a>
                             </div>
                             <div class="row-close-session">
                                 <a href="/logout">Cerrar sesión</a>
@@ -99,4 +94,3 @@
 
 
 </th:block>
-

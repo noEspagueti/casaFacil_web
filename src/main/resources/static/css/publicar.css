@@ -16,6 +16,90 @@
     --back-color-select-font: #c0dbff;
 }
 
+.form_publicar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.tipo_publicacion_container {
+    width: 80em;
+    height: 75em;
+    margin: auto;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+}
+
+.publicacion_container {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    display: flex;
+    align-items: start;
+}
+
+.seccion_publicacion {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.publicacion_content {
+    width: 50%;
+}
+
+.update_content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.row_button {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    padding: 40px 0;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.principal_row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 15px;
+}
+
+.principal_row_2 {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.title_mensaje {
+    display: flex;
+    gap: 15px;
+    padding: 0 0 10px 0;
+}
+
+
+
+
+
+
+
 
 .containerPublicar {
     margin: auto;
@@ -79,17 +163,6 @@ textarea {
     width: 100%;
     resize: none;
     padding: 10px;
-}
-
-.row_button {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-}
-
-
-.row_upload {
-    padding: 20px;
 }
 
 .area {
@@ -176,24 +249,6 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight: 700;
     border: none;
     transition: all 0.3s ease-out;
-}
-
-.btn_publicar {
-    color: #08151f;
-    background: rgb(22, 255, 115);
-}
-
-.btn_cancelar {
-    color: #f8fcff;
-    background: #f94910;
-}
-
-.btn_publicar:hover {
-    background: rgb(192, 255, 217);
-}
-
-.btn_cancelar:hover {
-    background: #ff906b;
 }
 
 select {

@@ -1,35 +1,25 @@
 package com.casafacil.project.models;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class Usuario {
-    @NotNull
-    @NotEmpty
+    @NotBlank(message = "Se requiere especificar el DNI*")
     private String dniUsuario;
-    
-    @NotEmpty
-    @NotNull
+    private String tipoUsuario;
+    @NotBlank(message = "Se requiere el nombre*")
     private String nombre;
-    @NotEmpty
-    @NotNull
+    @NotBlank(message = "Se requiere el apellido*")
     private String apellido;
-    @NotEmpty
-    @NotNull
+    @NotBlank(message = "Se requiere la dirección*")
     private String direccion;
-    @NotEmpty
-    @NotNull
+    @NotBlank(message = "Se requiere el distrito*")
     private String distrito;
-    @NotEmpty
-    @NotNull
+    @NotBlank(message = "Se requiere un celular*")
     private String celular;
-
-    @NotNull
+    @NotNull(message = "Se requiere credenciales*")
     private Credenciales credenciales;
-    
-
 
 }

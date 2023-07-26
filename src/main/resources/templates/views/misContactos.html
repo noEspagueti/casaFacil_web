@@ -1,5 +1,18 @@
-
-
 <!-- CONTACTOS -->
-    <h1>Mis contactos</h1>
+<div class="container-head">
+    <div class="container-head-Title">
+        <h1>Mis Contactos</h1>
+    </div>
+    <div class="container-head-description">
+        <p th:text="${#lists.size(misContactos) + ' contactos'}"></p>
+        </div>
+</div>
 
+
+<div class="contactos-container">
+    <div class="contacto" th:each="listaContactos : ${misContactos}" th:object="${listaContactos}">
+        <p>Nombre</p>
+        <p th:text="*{usuario.nombre}"></p>
+        <p th:text="*{mensaje}"></p>
+    </div>
+</div>

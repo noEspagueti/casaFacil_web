@@ -1,0 +1,26 @@
+<div th:object="${publicacion}">
+    <div class="row_mensaje" >
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                aspect_ratio
+            </span>
+            <p for="areaConstruida">Area construida</p>
+        </div>
+        <input type="number" id="areaConstruida" th:field="*{terreno.areaConstruida}" name="areaConstruida">
+        <div class="invalid-feedback"
+            th:if="${#fields.hasErrors('terreno.areaConstruida')}" th:errors="*{terreno.areaConstruida}">
+        </div>
+    </div>
+    <div class="row_mensaje" >
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                straighten
+            </span>
+            <p for="areaTotal">Area total</p>
+        </div>
+        <input type="number" id="areaTotal" th:field="*{terreno.areaTotal}" name="areaTotal">
+        <div class="invalid-feedback"
+            th:if="${#fields.hasErrors('terreno.areaTotal')}" th:errors="*{terreno.areaTotal}">
+        </div>
+    </div>
+</div>

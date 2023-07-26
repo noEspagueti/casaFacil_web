@@ -1,0 +1,153 @@
+/*REGISTRAR*/
+:root {
+    --background: #313131;
+    --main-color: #cbe1ff;
+}
+
+.container_registrar {
+    width: 90em;
+    height: 53em;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 20px 0;
+    box-sizing: content-box;
+}
+
+.registrar_general {
+    display: flex;
+}
+
+.img_registrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eff3f8;
+    border-radius: 50px;
+}
+
+.img_registrar>img {
+    width: 600px;
+    animation: intro 1s;
+}
+
+select[name="tipoUsuario"],
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 5px;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid  var(--background);
+    padding: 10px;
+}
+
+.form_register {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.row-register {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+@keyframes intro {
+    0% {
+        transform: translateY(-50px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.registrar {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.title-register {
+    font-weight: 800;
+    text-align: center;
+    padding: 40px 0;
+}
+
+
+
+.navigation {
+    display: flex;
+}
+
+.num {
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 20px;
+    height: 20px;
+    color: #fff;
+    border: 1px solid var(--main-color);
+    margin: 5px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.75s;
+}
+
+.selected {
+    background-color: var(--main-color);
+    color: #fff;
+}
+
+
+.selected {
+    transform: scale(0.8);
+}
+
+::selection {
+    background-color: transparent;
+}
+
+.view {
+    width: 800px;
+    height: 500px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.element {
+    width: calc(800px - 10px);
+    margin: 5px;
+    display: flex;
+    border-radius: 50px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+    box-sizing: border-box;
+    padding: 200px;
+    gap: 20px;
+}
+
+.content {
+    width: fit-content;
+    height: calc(100% - 5px);
+    display: flex;
+    transform-origin: left;
+    transition: 0.5s;
+    transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.control {
+    position: absolute;
+    left: 85%;
+    top: 35%;
+}

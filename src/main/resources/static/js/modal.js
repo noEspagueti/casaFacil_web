@@ -1,15 +1,17 @@
+const callToModal = document.getElementById('callToContactar');
+const callToCancel = document.getElementById('buttonCancelar');
+const modal = document.querySelector('.modal_contactar');
 
-export function callModal(element, modal, background) {
-    element.onclick = function () {
-        background.classList.toggle("blur");
-        modal.classList.toggle("blockModal");
-    };
-}
+callToModal.onclick = function () {
+    document.querySelector('.container_post').classList.toggle("blur");
+    modal.classList.toggle("blockModal");
+};
 
 
-export function closeModal(element, modal, background) {
-    element.onclick = function (event) {
-        background.classList.toggle("blur");
-        modal.classList.toggle("blockModal");
-    };
-}
+callToCancel.onclick = function (event) {
+    document.querySelector('.container_post').classList.toggle("blur");
+    modal.classList.toggle("blockModal");
+};
+
+
+

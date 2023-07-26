@@ -52,4 +52,22 @@ public class RepertorioController {
                 .addObject("titulo", "yo");
     }
 
+    @GetMapping("/Casa")
+    public ModelAndView showCasaFormulario(HttpSession session) {
+        return new ModelAndView("views/publicacion/casaFormulario")
+                .addObject("publicacion", new Publicacion());
+    }
+
+    @GetMapping("/Departamento")
+    public ModelAndView showDepartamentoFormulario(HttpSession session) {
+        return new ModelAndView("views/publicacion/departamentoFormulario")
+                .addObject("publicacion", new Publicacion());
+    }
+
+    @GetMapping("/Terreno")
+    public ModelAndView showTerrenoFormulario(HttpSession session) {
+        return new ModelAndView("views/publicacion/terrenoFormulario")
+                .addObject("publicacion", new Publicacion());
+    }
+
 }

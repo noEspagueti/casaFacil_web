@@ -1,0 +1,46 @@
+<div th:object="${publicacion}">
+    <div class="row_mensaje">
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                door_front
+            </span>
+            <p for="numeroHabitaciones">N° de habitaciones</p>
+        </div>
+        <input type="number" id="numeroHabitaciones" th:field="*{tipoDepartamento.numeroHabitaciones}" name="numeroHabitaciones">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoDepartamento.numeroHabitaciones')}" th:errors="*{tipoDepartamento.numeroHabitaciones}">
+        </div>
+    </div>
+    <div class="row_mensaje">
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                shower
+            </span>
+            <p for="numeroBanio">N° de Baños</p>
+        </div>
+        <input type="number" id="numeroBanio" th:field="*{tipoDepartamento.numeroBanio}" name="numeroBanio">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoDepartamento.numeroBanio')}" th:errors="*{tipoDepartamento.numeroBanio}">
+        </div>
+     </div>
+    <div class="row_mensaje">
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                stairs
+            </span>
+            <p for="numeroPisos">N° de pisos disponibles</p>
+        </div>
+        <input type="number" id="numeroPisos" th:field="*{tipoDepartamento.numeroPisos}" name="numeroPisos">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoDepartamento.numeroPisos')}" th:errors="*{tipoDepartamento.numeroPisos}">
+        </div>
+    </div>
+    <div class="row_mensaje" >
+        <div class="title_mensaje">
+            <span class="material-symbols-outlined">
+                straighten
+            </span>
+            <p for="areaTotal">Area total</p>
+        </div>
+        <input type="number" id="areaTotal"  th:field="*{tipoDepartamento.areaTotal}" name="areaTotal">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoDepartamento.areaTotal')}" th:errors="*{tipoDepartamento.areaTotal}">
+        </div>
+    </div>
+</div>

@@ -23,7 +23,7 @@ options.forEach(item => {
         item.classList.add('select')
         updateContent(pathName.replace('/', ''));
     }
-})
+});
 
 
 function updateContent(path) {
@@ -61,7 +61,6 @@ function publicacion(insertToParent) {
     let content = document.createElement('DIV');
     content.classList.add('mis_Publicaciones');
     getFetch("http://localhost:8080/repertorio/publicaciones").then(response => {
-        console.log(response);
         content.innerHTML = response;
     });
     insertToParent.appendChild(content);

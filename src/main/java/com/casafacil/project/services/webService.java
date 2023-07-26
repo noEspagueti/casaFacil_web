@@ -12,7 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Miguel
  */
 
-public interface webService <T>{
-    public ResponseEntity consumirApi(String url,T object);
+public interface webService<T> {
+    public ResponseEntity consumirApi(String url, T object);
+
     public T methoGet(String url, T objectClass);
+
+    public ResponseEntity remmove(String url);
 }
