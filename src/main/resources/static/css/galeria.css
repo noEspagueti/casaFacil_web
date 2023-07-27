@@ -1,0 +1,79 @@
+.publicacion_gallery {
+    width: 100%;
+    height: 70em;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post_container_gallery {
+    width: 100%;
+    height: 20em;
+    background: #f8f9fa;
+    display: flex;
+    gap: 20px;
+    border-radius: 2rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: #202020;
+}
+
+.img_container_gallery {
+    width: 30%;
+}
+
+.img_container_gallery img{
+    width: 100%;
+    height: 100%;
+}
+
+.description_container_gallery{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.titulo{
+    width: 50%;
+}
+
+.titulo p{
+     line-height: 35px !important;
+    font-size: 2rem;
+}
+
+.tipoInmuebe{
+    display: flex;
+    padding: 10px;
+}
+
+
+.tipo_casa{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+
+.numero_pisos,
+.numero_numeroHabitaciones,
+.numero_banios,
+.numero_areaTotal,
+.numero_areaConstruida {
+    display: flex;
+    gap: 10px;
+}
+
+.descripcion_usuario{
+    width: 20%;
+    height: 100%;
+    background-color: #e1e1e1;
+}
+
+.descripcion_usuario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

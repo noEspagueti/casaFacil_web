@@ -1,6 +1,8 @@
 package com.casafacil.project.controllers;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.OverridesAttribute.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.casafacil.project.models.*;
 import com.casafacil.project.services.webServiceImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +53,11 @@ public class PublicacionController {
     public ModelAndView saveContacto(Contactos c, HttpSession session, @PathVariable("idPublicacion") Long id) {
         Usuario user = (Usuario) session.getAttribute("usuarioLogueado");
         if (user != null || id != null || c != null) {
-            Usuario usuarioContacto = (Usuario) session.getAttribute("contacto");
+            String urlContacto = "http://localhost:8050/api/publicacion/find/id/" + id;
+            // Usuario usuarioContacto = (Usuario) session.getAttribute("contacto");
+            Publicacion publicacionContacto = (Publicacion) webService.methoGet(urlContacto, new Publicacion());
+            Usuario usuarioContacto = publicacionContacto.getUsuario();
+
             Contactos contacto = c;
             contacto.setDniContacto(user.getDniUsuario());
             contacto.setNombres(user.getNombre());

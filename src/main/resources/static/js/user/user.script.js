@@ -64,6 +64,7 @@ function publicacion(insertToParent) {
         content.innerHTML = response;
     });
     insertToParent.appendChild(content);
+    
 }
 
 
@@ -76,3 +77,6 @@ function contactos(insertToParent) {
     });
     insertToParent.appendChild(content);
 }
+
+
+

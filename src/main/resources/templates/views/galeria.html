@@ -10,12 +10,16 @@
 
 
 <div class="container">
-    <div class="publicacion_post_container">
-        <a th:each="lista : ${listaPublicacion}" th:object="${lista}" class="post_container">
-            <div class="img_container">
+    <div class="publicacion_gallery">
+        <a href="" class="post_container_gallery" th:each="lista : ${listaPublicacion}" th:object="${lista}"
+            th:href="@{/post/{id}(id=*{idPublicacion})}">
+            <div class="img_container_gallery">
                 <img th:src="@{/assets/{filename}(filename=*{rutaImg})}" th:alt="*{rutaImg}">
             </div>
-            <div class="description-container">
+            <div class="description_container_gallery">
+                <div class="titulo">
+                    <p th:text="${lista.titulo}"></p>
+                </div>
                 <div class="precio">
                     <p th:text="'S/. ' + ${#numbers.formatDecimal(lista.precio, 2, 'COMMA', 2, 'POINT')}"></p>
                 </div>
@@ -25,9 +29,95 @@
                 <div class="detalles_container">
                     <p th:text="*{ciudad}"></p>
                 </div> 
+
+                <div class="tipoInmuebe">
+                    <div class="tipo_casa" th:if="${lista.tipoCasa != null}">
+                          <div class="numero_pisos">
+                              <span class="material-symbols-outlined">
+                                  stairs
+                              </span>
+                              <p th:text="*{tipoCasa.numeroPisos} + pisos"></p>
+                          </div>
+                          <div class="numero_numeroHabitaciones">
+                             <span class="material-symbols-outlined">
+                                 door_front
+                             </span>
+                              <p th:text="*{tipoCasa.numeroHabitaciones}"></p>
+                          </div>
+                          <div class="numero_banios">
+                            <span class="material-symbols-outlined">
+                                shower
+                            </span>
+                                <p th:text="*{tipoCasa.numeroBanio}"></p>
+                          </div>
+                          <div class="numero_areaTotal">
+                             <span class="material-symbols-outlined">
+                                 straighten
+                             </span>
+                                <p th:text="*{tipoCasa.areaTotal} + ' A. total'"></p>
+                          </div>
+                          <div class="numero_areaConstruida">
+                                <span class="material-symbols-outlined">
+                                    aspect_ratio
+                                </span>
+                                    <p th:text="*{tipoCasa.areaConstruida} + ' A. construida'"></p>
+                          </div>
+                    </div>
+
+
+                    <div class="tipo_casa" th:if="${lista.tipoDepartamento != null}">
+                          <div class="numero_pisos">
+                              <span class="material-symbols-outlined">
+                                  stairs
+                              </span>
+                              <p th:text="*{tipoDepartamento.numeroPisos} + pisos"></p>
+                          </div>
+                          <div class="numero_numeroHabitaciones">
+                             <span class="material-symbols-outlined">
+                                 door_front
+                             </span>
+                              <p th:text="*{tipoDepartamento.numeroHabitaciones}"></p>
+                          </div>
+                          <div class="numero_banios">
+                            <span class="material-symbols-outlined">
+                                shower
+                            </span>
+                                <p th:text="*{tipoDepartamento.numeroBanio}"></p>
+                          </div>
+                          <div class="numero_areaTotal">
+                             <span class="material-symbols-outlined">
+                                 straighten
+                             </span>
+                                <p th:text="*{tipoDepartamento.areaTotal} + ' A. total'"></p>
+                          </div>
+                    </div>
+
+                    <div class="tipo_casa" th:if="${lista.terreno != null}">
+                         <div class="numero_areaTotal">
+                             <span class="material-symbols-outlined">
+                                 straighten
+                             </span>
+                                <p th:text="*{terreno.areaTotal} + ' A. total'"></p>
+                          </div>
+                             <div class="numero_areaConstruida">
+                                 <span class="material-symbols-outlined">
+                                     aspect_ratio
+                                 </span>
+                                 <p th:text="*{terreno.areaConstruida} + ' A. construida'"></p>
+                             </div>
+                    </div>
+                </div>
             </div>
-        </a> 
-</div>
+
+            <div class="descripcion_usuario">
+                <div class="icon-profile">
+                    <i class="bi bi-person-circle" style="font-size: 2.2em; color: #fbffff;"></i>
+                </div>
+                <p th:text="*{usuario.nombre}"></p>
+            </div>
+
+        </a>
+    </div>
 </div>
 
 

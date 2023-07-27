@@ -1,6 +1,7 @@
 package com.casafacil.project.models;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
