@@ -190,7 +190,8 @@ input[name="detalles"]::placeholder {
 
 
 select[name="inmueble"],
-select[name="publicacion"] {
+select[name="publicacion"],
+select[name="comboCiudad"] {
     appearance: none;
     -webkit-appearance: none;
     width: 10em;
@@ -268,7 +269,7 @@ select[name="publicacion"] {
     align-items: center;
     gap: 20px;
 }
-
+/* 
 select[name="comboCiudad"] {
     border: none;
     outline: 2px solid #c3d1d6;
@@ -276,7 +277,7 @@ select[name="comboCiudad"] {
     width: 10em;
     border-radius: 5px;
     padding: 10px;
-}
+} */
 
 .publicacion_post_container {
     padding: 20px;
@@ -758,4 +759,10 @@ input[name="clave"] {
     50% {
         transform: translateY(-20px);
     }
+}
+
+
+.footer_container_content p,
+.footer_container_content a {
+    color: var(--color-font);
 }

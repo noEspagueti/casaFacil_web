@@ -1,6 +1,18 @@
-p,h1{
+:root {
+    --background-description: #fff;
+    --boxshadow-description: #0b6ffa;
+}
+
+[theme="dark"] {
+    --background-description: #081927;
+    --boxshadow-description: #0b6ffa;
+}
+
+p,
+h1 {
     margin: 0;
 }
+
 /*POSTING*/
 .modal_contactar {
     border-radius: 20px;
@@ -158,26 +170,40 @@ textarea {
     padding: 10px;
     gap: 10px;
 }
-.return{
+
+.return {
     padding: 10px;
+    display: flex;
+    align-items: center;
 }
+
+.return span,a{
+    font-weight: 800;
+    color: var(--color-font);
+}
+
 .post_description {
     padding: 30px;
     width: 100%;
     text-align: start;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 100px -67px var(--background_post);
+    background: var(--background-description);
+    box-shadow: 0px 0px 100px -67px var(--boxshadow-description);
 }
 
 .contenido {
     width: 80%;
 }
 
+.contenido p {
+    color: var(--color-font);
+}
+
 .post_img {
     object-fit: contain;
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    /* height: 100%; */
     box-sizing: border-box;
     display: flex;
     justify-content: start;
@@ -188,7 +214,7 @@ textarea {
     width: 100%;
 }
 
-.post{
+.post {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -196,13 +222,13 @@ textarea {
 
 .post_tittle {
     width: 80%;
-    color: #515151;
+    color: var(--color-font);
     margin-bottom: 20px;
-    padding: 0 20px;    
+    padding: 0 20px;
 }
 
 
-.post_tittle>p{
+.post_tittle>p {
     margin: 0;
     font-size: 1.5em;
 
@@ -210,7 +236,7 @@ textarea {
 
 .post_description_head {
     margin: 0 0 30px 0;
-    color: #515151;
+    color: var(--color-font);
     font-size: 1.5em;
 }
 
@@ -242,16 +268,17 @@ textarea {
 .precio_contain p {
     font-size: 2rem;
     font-weight: 700;
+    color: var(--color-font);
 }
 
-.btnLike{
+.btnLike {
     font-size: 2rem;
     cursor: pointer;
 }
 
 
 
-.map{
+.map {
     width: 100%;
     height: 20em;
     background: red;

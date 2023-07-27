@@ -7,6 +7,10 @@ export function elementUI(theme) {
     document.getElementById("logo").src = (theme === "light") ? "/public/logoweb-01.png" : "/public/logo.png";
     if (document.getElementById("logoFooter")) {
         document.getElementById("logoFooter").src = (theme === "light") ? "/public/logoweb-01.png" : "/public/logo.png";
+        if (document.querySelector(".img_register")) {
+            document.querySelector(".img_register").src = (theme === "light") ? "/public/register.png" : "/public/registerDark.png";
+        }
+
     }
     const iconTheme = (theme === "light") ? "dark_mode" : "light_mode";
     document.getElementById("switch_theme").innerHTML = `<span class="material-symbols-outlined">${iconTheme}</span>`;

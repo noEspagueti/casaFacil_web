@@ -1,3 +1,12 @@
+
+:root{
+    --background-navbar:#fff;
+}
+
+[theme="dark"] {
+    --background-navbar:rgba(13, 20, 36, 0.8);
+}
+
 *::after,
 *::before,
 * {
@@ -28,6 +37,12 @@ nav {
     transition: all 0.2s ease;
     box-shadow: 0px 10px 15px -12px rgba(0, 0, 0, 0.1);
 }
+
+.navbarSticky{
+    background: var(--background-navbar);
+    box-shadow: 0px 10px 15px - 12px rgba(0, 0, 0, 0.1);
+}
+
 
 .container_nav {
     width: 80em;

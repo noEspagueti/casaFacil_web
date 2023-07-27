@@ -2,8 +2,11 @@
 :root {
     --background: #313131;
     --main-color: #cbe1ff;
+    --background-img : #eff3f8;
 }
-
+[theme="dark"] {
+    --background-img : ;
+}
 .container_registrar {
     width: 90em;
     height: 53em;
@@ -23,7 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #eff3f8;
+    background: var(--background-img);
     border-radius: 50px;
 }
 

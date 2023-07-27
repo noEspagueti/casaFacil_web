@@ -6,6 +6,9 @@
     gap: 20px;
 }
 
+.post_container_gallery:hover {
+    color: #202020;
+}
 .post_container_gallery {
     width: 100%;
     height: 20em;
@@ -40,7 +43,7 @@
 
 .titulo p{
      line-height: 35px !important;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .tipoInmuebe{
@@ -68,7 +71,7 @@
 .descripcion_usuario{
     width: 20%;
     height: 100%;
-    background-color: #e1e1e1;
+    background-color: #ebebeb;
 }
 
 .descripcion_usuario{
